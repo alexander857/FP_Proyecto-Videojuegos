@@ -49,14 +49,14 @@ void pregunta15();
 int main(){
 	system("color 02"); //cambia de color el fondo de la consola
 	char play; 
-	int i=5; //variable que ira disminuyendo si el usuario no elije una opcion existente
+	int i=1; //para que el while no acabe mientras el usuario no ingrese una opcion que no esta en el menu principal de la consola
 	
 	games(); //mostramos al usuario el menu de los juegos
 	cout<<endl;
 	cout<<"Opcion: ";cin>>play;  //opcion para que el usuario elija sy juego
 	system("cls"); //borra lo que hay en pantalla
 	
-	while(i>0){
+	while(i=1){
 		if(play=='1'){
 			AMYBM(); //primer juego arreglos y matrices
 		}
@@ -71,7 +71,6 @@ int main(){
 		}
 		else{
 			cout<<"Opcion no disponible"<<endl;
-			i--;  //el usuario solo tiene 5 intentos de ingresar una opcion existente, al acabarse la consola se cierra
 			system("pause");
 			system("cls");
 		}	
@@ -82,11 +81,6 @@ int main(){
 		system("cls");
 		
 	}
-	
-	if(i==0){ //cuando el usuario haya ingresado muchas veces una opcion que no esta en el menu
-		cout<<"Ha ingresado muchos datos que no existen en el menu. La consola se cerrara..."<<endl;	
-	}
-
 	
 	return 0;
 }
