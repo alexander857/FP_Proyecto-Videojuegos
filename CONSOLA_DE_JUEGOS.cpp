@@ -54,7 +54,7 @@ int main(){
 	games(); //mostramos al usuario el menu de los juegos
 	cout<<endl;
 	cout<<"Opcion: ";cin>>play;  //opcion para que el usuario elija sy juego
-	system("cls");
+	system("cls"); //borra lo que hay en pantalla
 	
 	while(i>0){
 		if(play=='1'){
