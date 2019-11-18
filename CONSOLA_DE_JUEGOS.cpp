@@ -47,43 +47,43 @@ void pregunta15();
 
 
 int main(){
-	system("color 02");
-	char play;
-	int i=5;
+	system("color 02"); //cambia de color el fondo de la consola
+	char play; 
+	int i=5; //variable que ira disminuyendo si el usuario no elije una opcion existente
 	
-	games();
+	games(); //mostramos al usuario el menu de los juegos
 	cout<<endl;
-	cout<<"Opcion: ";cin>>play; 
+	cout<<"Opcion: ";cin>>play;  //opcion para que el usuario elija sy juego
 	system("cls");
 	
 	while(i>0){
 		if(play=='1'){
-			AMYBM();
+			AMYBM(); //primer juego arreglos y matrices
 		}
 		else if(play=='2'){
-			loteria();
+			loteria(); //segundo juego la loteria
 		}
 		else if(play=='3'){
-			millonario();
+			millonario(); //tercer juego quien quiere ser millonario
 		}
 		else if(play=='4'){
-			break;
+			break;  //si el usuario decide salir, se cierra la consola
 		}
 		else{
 			cout<<"Opcion no disponible"<<endl;
-			i--;
+			i--;  //el usuario solo tiene 5 intentos de ingresar una opcion existente, al acabarse la consola se cierra
 			system("pause");
 			system("cls");
 		}	
 		
-		games();
+		games(); //se vuelve a mostrar el menu de juegos 
 		cout<<endl;
 		cout<<"Opcion: ";cin>>play;
 		system("cls");
 		
 	}
 	
-	if(i==0){
+	if(i==0){ //cuando el usuario haya ingresado muchas veces una opcion que no esta en el menu
 		cout<<"Ha ingresado muchos datos que no existen en el menu. La consola se cerrara..."<<endl;	
 	}
 
