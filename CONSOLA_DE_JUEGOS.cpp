@@ -2874,7 +2874,7 @@ void preguntas(){
 																																ofstream millon("QUIEN QUIERE SER MILLONARIO.txt",ios_base::app);																																
 																																if (millon.is_open()){	
 																																	millon<<"Jugador: "<<name<<"				Fecha: "<<fecha<<endl;
-																																	millon<<"La ultima vez perdiste en la pregunta "<<Q<<endl;
+																																	millon<<"La ultima vez perdiste en la pregunta "<<Q<<" y te llevaste "<<premio+3100<<endl;
 																																	for(int i=0;i<120;i++){ //crea una linea en el archivo entre cada jugador
 																																		millon<<"_";
 																																	}
@@ -2933,7 +2933,7 @@ void preguntas(){
 																														ofstream millon("QUIEN QUIERE SER MILLONARIO.txt",ios_base::app);																														
 																														if (millon.is_open()){																															
 																															millon<<"Jugador: "<<name<<"				Fecha: "<<fecha<<endl;
-																															millon<<"La ultima vez perdiste en la pregunta "<<Q<<endl;
+																															millon<<"La ultima vez perdiste en la pregunta "<<Q<<" y te llevaste "<<premio+3100<<endl;
 																															for(int i=0;i<120;i++){ //crea una linea en el archivo entre cada jugador
 																																millon<<"_";
 																															}
@@ -2990,7 +2990,7 @@ void preguntas(){
 																												ofstream millon("QUIEN QUIERE SER MILLONARIO.txt",ios_base::app);																												
 																												if (millon.is_open()){																													
 																													millon<<"Jugador: "<<name<<"				Fecha: "<<fecha<<endl;
-																													millon<<"La ultima vez perdiste en la pregunta "<<Q<<endl;
+																													millon<<"La ultima vez perdiste en la pregunta "<<Q<<" y te llevaste "<<premio+3100<<endl;
 																													for(int i=0;i<120;i++){ //crea una linea en el archivo entre cada jugador
 																														millon<<"_";
 																													}
@@ -3047,7 +3047,7 @@ void preguntas(){
 																										ofstream millon("QUIEN QUIERE SER MILLONARIO.txt",ios_base::app);																									
 																										if (millon.is_open()){																										
 																											millon<<"Jugador: "<<name<<"				Fecha: "<<fecha<<endl;
-																											millon<<"La ultima vez perdiste en la pregunta "<<Q<<endl;																										
+																											millon<<"La ultima vez perdiste en la pregunta "<<Q<<" y te llevaste "<<premio+3100<<endl;																										
 																											for(int i=0;i<120;i++){ //crea una linea en el archivo entre cada jugador
 																												millon<<"_";
 																											}
@@ -3105,7 +3105,7 @@ void preguntas(){
 																									ofstream millon("QUIEN QUIERE SER MILLONARIO.txt",ios_base::app);																									
 																									if (millon.is_open()){																									
 																										millon<<"Jugador: "<<name<<"				Fecha: "<<fecha<<endl;
-																										millon<<"La ultima vez perdiste en la pregunta "<<Q<<endl;
+																										millon<<"La ultima vez perdiste en la pregunta "<<Q<<" y te llevaste "<<premio+3100<<endl;
 																										for(int i=0;i<120;i++){ //crea una linea en el archivo entre cada jugador
 																											millon<<"_";
 																										}
@@ -3138,7 +3138,7 @@ void preguntas(){
 																						ofstream millon("QUIEN QUIERE SER MILLONARIO.txt",ios_base::app);																						
 																						if (millon.is_open()){																							
 																							millon<<"Jugador: "<<name<<"				Fecha: "<<fecha<<endl;
-																							millon<<"La ultima vez perdiste en la pregunta "<<Q<<endl;
+																							millon<<"La ultima vez perdiste en la pregunta "<<Q<<" y te llevaste "<<premio+900<<endl;
 																							for(int i=0;i<120;i++){ //crea una linea en el archivo entre cada jugador
 																								millon<<"_";
 																							}
@@ -3197,7 +3197,7 @@ void preguntas(){
 																				ofstream millon("QUIEN QUIERE SER MILLONARIO.txt",ios_base::app);																				
 																				if (millon.is_open()){																					
 																					millon<<"Jugador: "<<name<<"				Fecha: "<<fecha<<endl;
-																					millon<<"La ultima vez perdiste en la pregunta "<<Q<<endl;
+																					millon<<"La ultima vez perdiste en la pregunta "<<Q<<" y te llevaste "<<premio+900<<endl;
 																					for(int i=0;i<120;i++){ //crea una linea en el archivo entre cada jugador
 																						millon<<"_";
 																					}
@@ -3253,7 +3253,7 @@ void preguntas(){
 																			ofstream millon("QUIEN QUIERE SER MILLONARIO.txt",ios_base::app);																			
 																			if (millon.is_open()){																				
 																				millon<<"Jugador: "<<name<<"				Fecha: "<<fecha<<endl;
-																				millon<<"La ultima vez perdiste en la pregunta "<<Q<<endl;
+																				millon<<"La ultima vez perdiste en la pregunta "<<Q<<" y te llevaste "<<premio+900<<endl;
 																				for(int i=0;i<120;i++){ //crea una linea en el archivo entre cada jugador
 																					millon<<"_";
 																				}
@@ -3307,7 +3307,7 @@ void preguntas(){
 																ofstream millon("QUIEN QUIERE SER MILLONARIO.txt",ios_base::app);																
 																if (millon.is_open()){																	
 																	millon<<"Jugador: "<<name<<"				Fecha: "<<fecha<<endl;
-																	millon<<"La ultima vez perdiste en la pregunta "<<Q<<endl;
+																	millon<<"La ultima vez perdiste en la pregunta "<<Q<<" y te llevaste "<<premio+900<<endl;
 																	for(int i=0;i<120;i++){ //crea una linea en el archivo entre cada jugador
 																		millon<<"_";
 																	}
@@ -3363,7 +3363,7 @@ void preguntas(){
 															ofstream millon("QUIEN QUIERE SER MILLONARIO.txt",ios_base::app);															
 															if (millon.is_open()){																
 																millon<<"Jugador: "<<name<<endl;
-																millon<<"La ultima vez perdiste en la pregunta "<<Q<<endl;
+																millon<<"La ultima vez perdiste en la pregunta "<<Q<<" y te llevaste "<<premio+900<<endl;
 																for(int i=0;i<120;i++){ //crea una linea en el archivo entre cada jugador
 																	millon<<"_";
 																}
