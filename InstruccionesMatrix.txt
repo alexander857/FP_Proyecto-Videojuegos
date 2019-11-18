@@ -1,0 +1,15 @@
+En el juego Arreglos, Matrices y una buena Memoria trata de adivinar las posiciones
+de los numeros que te pregunten.
+
+Se te iran presentando arreglos y matrices en pantalla y tu tendras que memorizarte los
+elementos que se encuentran en estos y posteriormente se te hara alguna pregunta como:
+En que posicion estaba el numero 7? o Que numero estaba en la posicion [1][2].
+
+Para este juego tienes que saberte las posiciones de las matrices y arreglos.
+
+Son 4 modos de dificultad:
+
+1-Modo Facil: contiene 6 niveles.
+2-Modo Normal: contiene 6 niveles.
+3-Modo Dificil: contiene 6 niveles.
+4-Modo Extremo: contiene 4 niveles.
