@@ -185,7 +185,7 @@ void loteria(){ //funcion principal del juego la loteria
 			}			
 		}
 		else if(opc=='2'){
-			opt=listasFND();
+			opt=listasFND(); //la variable opt resive el valor que retorna la funcion listasFND cuando el usuario elige que partidas quiere ver y leer su archivo
 			system("cls");
 			while(K==1){
 				if(opt=='1'){
@@ -783,7 +783,7 @@ void AMYBM(){ //funcion incipal del juego de matrices
 			}			
 		}
 		else if(opc=='2'){ 
-			opti=listasFNDE();
+			opti=listasFNDE(); //la variable opt resive el valor que retorna la funcion listasFNDE cuando el usuario elige que partidas quiere ver y leer su archivo
 			system("cls");
 			while(K==1){
 				if(opti=='1'){
