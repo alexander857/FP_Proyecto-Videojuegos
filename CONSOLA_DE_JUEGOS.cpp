@@ -40,10 +40,27 @@ void InstruccionesM();
 void nivelesM(); //MENU DE PREMIOS QUE GANA EL USUARIO CADA QUE CONTESTA UNA PREGUNTA
 void preguntas(); //LAS PREGUNTAS DEL JUEGO
 void pregunta11(); 
+void archivo();
+void pedirNombre();
+void pregunta1();
+void pregunta2();
+void pregunta3();
+void pregunta4();
+void pregunta5();
+void pregunta6();
+void pregunta7();
+void pregunta8();
+void pregunta9();
+void pregunta10();
+void pregunta11();
 void pregunta12();
 void pregunta13();
 void pregunta14();
 void pregunta15();
+
+char name[40];//declaracion de variable (tipo char)
+
+int premio=100, Q=1, k=1;
 
 
 int main(){
@@ -2496,7 +2513,7 @@ void extremo(){ //se declara una variable de suma para uno de los niveles
 	}
 }
 
-bool verifica(int primero[][3], int num){ //funcion para verificar si un numero se repite en la matriz  //funcion bool del nivel 1 extremo
+bool verifica(int primero[4][3], int num){ //funcion para verificar si un numero se repite en la matriz  //funcion bool del nivel 1 extremo
 	for(int i=0;i<4;i++){
 		for(int j=0;j<3;j++){
 			if(num==primero[i][j]){
@@ -2507,7 +2524,7 @@ bool verifica(int primero[][3], int num){ //funcion para verificar si un numero 
 	return true; //si no se repide retornara un true
 }
 
-bool exsegundo(int segundo[][4], int num2){ //funcion para verificar si un numero se repite en la matriz  //funcion bool del nivel 2 extremo
+bool exsegundo(int segundo[4][4], int num2){ //funcion para verificar si un numero se repite en la matriz  //funcion bool del nivel 2 extremo
 	for(int i=0;i<4;i++){
 		for(int j=0;j<4;j++){
 			if(num2==segundo[i][j]){
@@ -2531,47 +2548,34 @@ char listasFNDE(){
 //FUNCIONES DE QUIEN QUIERE SER MILLONARIO
 
 void millonario(){
-	system("color 5b"); //cambia el color del fondo
-	char O;
-	int s=1; //variable s para que este funcionando infinitamente el while
+		system("color 5b"); //cambia el color del fondo
+
+	    string Opcion;
+	    
+		int s=1; //variable s para que este funcionando infinitamente el while
 	
 	while(s==1){ //mientras el usuario no ingrese una opcion existente, el menu se le seguira mostrando
 		menuM(); //menu del juego
-		cout<<"Opcion: ";cin>>O;
+		cout<<"Opcion: ";cin>>Opcion;
 		system("cls");
 		
-		if(O=='1'){
-			preguntas();	//se llama a la funcion que contiene las preguntas de todo el juego
+		if(Opcion=="1"){
+			pedirNombre();	//se llama a la que pide el nombre
 		}
-		else if(O=='2'){
+		else if(Opcion=="2"){
 			InstruccionesM(); //funcion de las instrucciones de como se juega
 			system("pause");
 		}
-		else if(O=='3'){
-			
-			string line;
-			ifstream miTXT ("QUIEN QUIERE SER MILLONARIO.txt"); //se lee un archivo de quien quiere ser millonario
-			if (miTXT.is_open()){	
-			while (getline (miTXT,line)){	
-				cout << line << '\n';
-			}
-			system("pause");
-			system("cls");
-			if(miTXT.eof()){	
-				cout<<"Se ha terminado de leer. Fin del archivo";
-				system("cls");
-			}
-				miTXT.close();
-			}
-			else cout << "No se puede abrir el archivo o no existe.";
+		else if(Opcion=="3"){
+			archivo();
 			
 		}
-		else if(O=='4'){
+		else if(Opcion=="4"){
 			break;
 		}
-
 		system("cls");
 	}
+		
 }
 
 void menuM(){
@@ -2580,6 +2584,7 @@ void menuM(){
 	cout<<endl;
 	cout<<"1-Jugar\n2-Como se juega\n3-Lista de partidas jugadas\n4-Salir del juego"<<endl;
 }
+
 
 void InstruccionesM(){
 	cout<<"[INSTRUCCIONES]"<<endl;
@@ -2592,1013 +2597,85 @@ void InstruccionesM(){
 	
 }
 
-void preguntas(){
-	int premio=100, Q=1, k=1; //la variable premio es lo que el usuario ira ganando conforme avanza en las preguntas
-	char selec, name[30];    //variable Q lleva la cuenta de el numero de la pregunta..pregunta 1, pregunta 2 etc...
-								//variable k es para que el while siga funcionando y mostrando la pregunta si el usuario no ingresa una opcion existente
-	cout<<"Cual es tu nombre? ";cin>>name;
-	system("cls");
+void nivelesM(){
+	cout<<"La pregunta 5 y 10 son zonas seguras, si logras contestarlas ya tendras asegurado el\n"
+	"premio que tienen."<<endl;
+	cout<<endl;
+	cout<<"01- $100\n02- $200\n03- $300\n04- $500\n05- $1,000 zona segura\n06- $1,300\n07- $1,500\n08- $2,000\n09- $2,500\n10- $3,200 zona segura\n11- $3,700\n12- $4,000\n"
+	"13- $4,500\n14- $5,000\n15- $10,000 premio mayor\n"<<endl;
+}
+
+void archivo(){
 	
-	while(Q<=15 && k==1){
-		system("color 30");
+	 	string line;
+			    ifstream miTXT ("QUIEN QUIERE SER MILLONARIO.txt"); //se lee un archivo de quien quiere ser millonario
+			    if (miTXT.is_open()){	
+			    while (getline (miTXT,line)){	
+				cout << line << '\n';
+			    }
+			    system("pause");
+			    system("cls");
+			    if(miTXT.eof()){	
+				cout<<"Se ha terminado de leer. Fin del archivo";
+				system("cls");
+		    	}
+				miTXT.close();
+			    }
+			    else cout << "\n\[No se puede abrir el archivo o no existe]\n"<<endl;
+				system("pause");			
+}
+
+
+
+void pedirNombre(){
+
+    cout<<"Escribe tu nombre por favor: "; 
+    cin>>name;
+    //cin.getline(name, 40); //utilizacion del getline
+    cout<<"Saludos!  "<<name<<endl; //muestra en pantalla lo que se preguntara "  " junto con nombre
+    cout<<"[Este es tu nombre, despues de jugar podras verlo en la lista de partidas]"<<endl;
+    system("pause");//Detner el pograma hasta que el usuario presione una tecla para continuar             
+    system("cls");
+    pregunta1(); //Se llaama a la funcion preguntas que contiene en si todas las preguntas del juego
+	
+}
+
+void preguntas(){
+
+pregunta1(); //solo basta con pedir a pregunta 1, porque en esa funcion se llama a la siguiente pregunta y asi sucesivamente
+
+
+}
+	
+	
+void pregunta1(){
+	
+	string selec;
+	
+	int s=1; //variable s para que este funcionando infinitamente el while
+
+	while(s==1){ //mientras el usuario no ingrese una opcion existente, el menu se le seguira mostrando
+	
+	   	system("color 30");
 		cout<<"Pregunta "<<Q<<":"<<endl; //pregunta 1
 		cout<<endl;
 		cout<<"Cuanto es 9x8?\n\na) 72\nb) 81\nc) 100\nd) 9"<<endl;
 		cout<<"Opcion: ";cin>>selec;
 		
-		if(selec=='a'){
-			cout<<"Coorectoo!! ya tienes: $"<<premio<<endl; //si la acierta ya tiene una cantidad de premio ganada y para de una vez a la siguiente
+		if(selec=="a"){
+			cout<<"\nCoorectoo!! ya tienes: $"<<premio<<endl; //si la acierta ya tiene una cantidad de premio ganada y para de una vez a la siguiente
 			cout<<"Vamos a la siguiente pregunta"<<endl;
 				Q++; //Q aumenta para la pregunta 2
 				system("pause");
 				system("cls");
-				while(Q<=15 && k==1){
-					system("color a0");
-					cout<<"Pregunta "<<Q<<":"<<endl; //pregunta 2
-					cout<<endl;
-					cout<<"A que es igual el seno de un angulo?\n\na) Cateto opuesto sobre Hipotenusa\nb) Cateto adyacente sobre Hipotenusa\nc) Hipotenusa sobre Cateto opuesto\n"
-					"d) Cateto opuesto sobre Cateto adyacente\ne) Me retiro con $"<<premio<<endl;
-					cout<<"Opcion: ";cin>>selec;
-					
-					if(selec=='a'){
-						cout<<"Corecctoo!! ya tienes: $"<<premio+100<<endl; //si la acierta se le suma mas al premio
-						cout<<"Vamos a la siguiente pregunta"<<endl;
-						Q++; //Q aumenta para la pregunta 3
-						system("pause");
-						system("cls");
-						
-						while(Q<=15 && k==1){
-							system("color e0");
-							cout<<"Pregunta "<<Q<<":"<<endl; //pregunta 3
-							cout<<endl;
-							cout<<"Simbolo quimico del Nitrogeno:\n\na) Ni\nb) N\nc) Nitro\nd) Ni idea\ne) Me retiro con $"<<premio+100<<endl;
-							cout<<"Opcion: ";cin>>selec;
-							
-							if(selec=='b'){
-								cout<<"Corecctoo!! ya tienes: $"<<premio+200<<endl; //se le vuelve a sumar al premio mas, si la acierta
-								cout<<"Vamos a la siguiente pregunta"<<endl;
-								Q++; //Q aumenta de nuevo para la pregunta 4
-								system("pause");
-								system("cls");
-								
-								while(Q<=15 && k==1){
-									system("color b0");
-									cout<<"Pregunta "<<Q<<":"<<endl; //pregunta 4
-									cout<<endl;
-									cout<<"K es la onceava letra del abecedario. Cierto o Falso?:\n\na) Cierto\nb) Falso\nc) Me retiro con $"<<premio+200<<endl;
-									cout<<"Opcion: ";cin>>selec;
-									
-									if(selec=='a'){
-										cout<<"Corecctoo!! ya tienes: $"<<premio+400<<endl; //si la acierta el premio aumenta mas
-										cout<<"Vamos a la siguiente pregunta"<<endl;
-										Q++; //Q aumenta para la pregunta 5
-										system("pause");
-										system("cls");
-							
-										
-										while(Q<=15 && k==1){
-											system("color a0");
-											cout<<"Pregunta "<<Q<<":"<<endl; //pregunta 5
-											cout<<endl;
-											cout<<"Como describirias a un hombre que no tiene todos los dedos en una mano?\n\na) Discapacitado\nb) Con capadicades especiales\n"
-											"c) Normal\nd) Sin dedos\ne) Me retiro con $"<<premio+400<<endl;
-											cout<<"Opcion: ";cin>>selec;
-											
-											if(selec=='c'){
-												cout<<"Corecctoo!! ya tienes: $"<<premio+900<<endl; //el premio vuelve a aumentar si la contesta bien
-												cout<<"Vamos a la siguiente pregunta"<<endl;
-												Q++; //Q aumenta para la pregunta 6
-												system("pause");
-												system("cls");
-												//se le muestra un mensaje de que llego a una zona segura 
-												cout<<"Has llegado a la primer zona segura, has acertado 5 preguntas!\n"
-												"De aqui en adelnate si pierdes ya tienes asegurado $1000"<<endl;
-												system("pause");
-												system("cls");
-												
-												while(Q<=15 && k==1){
-													system("color b0");
-													cout<<"Pregunta "<<Q<<":"<<endl; //pregunta 6
-													cout<<endl;
-													cout<<"En que orden van los colores de cada letra de Google?\n\na) Rojo, Verde, Azul, Amarillo, Rojo, Azul\n"
-													"b) Verde, Amarillo, Rojo, Verde, Azul, Rojo\nc) Azul, Rojo, Amarillo, Azul, Verde, Rojo\n"
-													"d) Azul, Rojo, Amarillo, Azul, Rojo, Verde"<<endl;
-													cout<<"Opcion: ";cin>>selec;
+				pregunta2();//siguiente pregunta con llamar funcion
+		}
 													
-													if(selec=='c'){
-														cout<<"Corecctoo!! ya tienes: $"<<premio+1200<<endl; //si la acierta aumenta el premio
-														cout<<"Vamos a la siguiente pregunta"<<endl;
-														Q++; //Q aumenta para la pregunta 7
-														system("pause");
-														system("cls");
-														
-														while(Q<=15 && k==1){
-															system("color 60");
-															cout<<"Pregunta "<<Q<<":"<<endl; //pregunta 7
-															cout<<endl;
-															cout<<"Es para referirse a encontrar algo en tercera persona:\n\na) Haya\nb) Halla\nc) Alla\nd) Ahi\n"
-															"e) Me retiro con $"<<premio+1200<<endl;
-															cout<<"Opcion: ";cin>>selec;
-															
-															if(selec=='b'){
-																cout<<"Corecctoo!! ya tienes: $"<<premio+1400<<endl; //el premio vuelve a aumentar al contestar bien la pregunta
-																cout<<"Vamos a la siguiente pregunta"<<endl;
-																Q++; //Q aumenta para la pregunta 8
-																system("pause");
-																system("cls");
-																
-																while(Q<=15 && k==1){
-																	system("color e0");
-																	cout<<"Pregunta "<<Q<<":"<<endl; //pregunta 8
-																	cout<<endl;
-																	cout<<"Es el cuarto planeta del sistema solar:\n\na) Urano\nb) Jupiter\nc) Mercurio\nd) Marte\n"
-																	"e) Me retiro con $"<<premio+1400<<endl;
-																	cout<<"Opcion: ";cin>>selec;
-																	
-																	if(selec=='d'){
-																		cout<<"Corecctoo!! ya tienes: $"<<premio+1900<<endl; //si la acierta aumenta mas el premio
-																		cout<<"Vamos a la siguiente pregunta"<<endl;
-																		Q++; //Q aumenta para la pregunta 9
-																		system("pause");
-																		system("cls");
-																		
-																		while(Q<=15 && k==1){
-																			system("color e0");
-																			cout<<"Pregunta "<<Q<<":"<<endl; //pregunta 9
-																			cout<<endl;
-																			cout<<"Todo bien? Todo correcto?, es una frase de:\n\na) HolaSoyGerman\nb) Fernanfloo\nc) El Rubius OMG\n"
-																			"d) Auronplay\ne) Me retiro con $"<<premio+1900<<endl;
-																			cout<<"Opcion: ";cin>>selec;
-																			
-																			if(selec=='d'){
-																				cout<<"Corecctoo!! ya tienes: $"<<premio+2400<<endl; //si la acierta aumenta el premio aun mas
-																				cout<<"Vamos a la siguiente pregunta"<<endl;
-																				Q++; //Q aumenta para la pregunta 10
-																				system("pause");
-																				system("cls");
-																				
-																				while(Q<=15 && k==1){
-																					system("color 90");
-																					cout<<"Pregunta "<<Q<<":"<<endl; //pregunta 10
-																					cout<<endl;
-																					cout<<"Es una de las 7 maravillas del mundo moderno:\n\na) El Coliseo de Roma, Italia\n"
-																					"b) La Estatua de la Libertad, EE.UU\nc) El Salvador del Mundo, El Salvador\n"
-																					"d) El Rio Lempa, El Salvador\ne) Me retiro con $"<<premio+2400<<endl;
-																					cout<<"Opcion: ";cin>>selec;
-																					
-																					if(selec=='a'){
-																						cout<<"Corecctoo!! ya tienes: $"<<premio+3100<<endl; //premio vuelve a aumentar porque la 
-																						cout<<"Vamos a la siguiente pregunta"<<endl;		//contesto bien
-																						Q++; //Q aumenta a la pregunta 11
-																						system("pause");
-																						system("cls");
-																						//se le dice al usuario que llego a la segunda zona segura
-																						cout<<"Has llegado a la segunda zona segura, has acertado 10 preguntas!\n"
-																						"De aqui en adelante si pierdes ya tienes asegurado $3200"<<endl;
-																						system("pause");
-																						system("cls");
-																						
-																						while(Q<=15 && k==1){
-																							system("color 80");
-																							cout<<"Pregunta "<<Q<<":"<<endl; //pregunta 11
-																							cout<<endl;
-																							pregunta11();
-																							cout<<"Opcion: ";cin>>selec;
-																							
-																							if(selec=='a'){   //premio aumenta mas si acierta la pregunta
-																								cout<<"Corecctoo!! ya tienes: $"<<premio+3600<<endl;
-																								cout<<"Vamos a la siguiente pregunta"<<endl;
-																								Q++; //Q aumenta para la pregunta 12
-																								system("pause");
-																								system("cls");
-																								
-																								while(Q<=15 && k==1){
-																									system("color e0");
-																									cout<<"Pregunta "<<Q<<":"<<endl; //pregunta 12
-																									cout<<endl;
-																									//se llama a una funcion que tiene la pregunta doce ya que por motivos de espacio 
-																									pregunta12();  //se puso mejor en una funcion  para luego llamarla
-																									cout<<"Opcion: ";cin>>selec;
-																									
-																									if(selec=='d'){  //aumenta el premio si acierta la pregunta
-																										cout<<"Corecctoo!! ya tienes: $"<<premio+3900<<endl;
-																										cout<<"Vamos a la siguiente pregunta"<<endl;
-																										Q++; //Q aumenta a la pregunta 13
-																										system("pause");
-																										system("cls");
-																										
-																										while(Q<=15 && k==1){
-																											system("color a0");
-																											cout<<"Pregunta "<<Q<<":"<<endl; //pregunta 13
-																											cout<<endl;
-																											pregunta13(); //se llama a otra funcion que contiene la pregunta 13
-																											cout<<"Opcion: ";cin>>selec;
-																											
-																											if(selec=='b'){ //el premio aumenta mas si la acierta
-																												cout<<"Corecctoo!! ya tienes: $"<<premio+4400<<endl;
-																												cout<<"Vamos a la siguiente pregunta"<<endl;
-																												Q++; //Q aumenta a la pregunta 14
-																												system("pause");
-																												system("cls");
-																												
-																												while(Q<=15 && k==1){
-																													system("color 90");
-																													cout<<"Pregunta "<<Q<<":"<<endl;//pregunta 14
-																													cout<<endl;
-																													pregunta14(); //se llama a la pregunta 14
-																													cout<<"Opcion: ";cin>>selec;
-																													
-																													if(selec=='c'){ //el premio aumenta mas
-																														cout<<"Corecctoo!! ya tienes: $"<<premio+4900<<endl;
-																														cout<<"Vamos a la siguiente pregunta"<<endl;
-																														Q++; //Q aumenta a la pregunta 15
-																														system("pause");
-																														system("cls");
-																														
-																														while(Q<=15 && k==1){
-																															system("color 30");
-																															cout<<"Pregunta "<<Q<<":"<<endl;//pregunta 15
-																															cout<<endl;
-																															pregunta15();//se llama a la funcion de la pregunta 15
-																															cout<<"Opcion: ";cin>>selec;
-																															 //se imprime en pantalla que ha pasado todas las preguntas
-																															if(selec=='b'){ //y se lleva el premio mayor
-																																cout<<"FELICIDADES!! TE LLEVAS EL PREMIO MAYOR: $"<<premio+9900<<endl;
-																																//se crea un archivo donde se guarda que ha contestado todas las preguntas y gano el
-																																//premio mayor
-																																time_t   t,x;																																
-																																char *fecha;																																
-																																x = time (&t);																																
-																																fecha = ctime (&x);  
-																																
-																																ofstream millon("QUIEN QUIERE SER MILLONARIO.txt",ios_base::app); //se crea el archivo																															
-																																if (millon.is_open()){																																	
-																																	millon<<"Jugador: "<<name<<"				Fecha: "<<fecha<<endl;
-																																	millon<<"CONTESTASTE TODAS LAS PREGUNTAS Y GANASTE EL PREMIO MAYOR!!! "<<premio+9900<<endl;																																
-																																	for(int i=0;i<120;i++){ //crea una linea en el archivo entre cada jugador
-																																		millon<<"_";
-																																	}
-																																	millon<<endl;
-																																	millon.close(); //se cierra el archivo creado																															
-																																}																																																														
-																																else {																														
-																																	cout<<"No se puede abrir el archivo o no existe"<<endl;																																	
-																																}
-																																
-																																Q++; //Q llega a mas de 15 y termina el while
-																																for (int i=0;i<100;i++){ //for que cambia el color de fondo de la consola con varios colores
-																																	system("color e0"); //cuando gana el usuario
-																																	system("color 30");
-																																}																																
-																																system("pause");
-																																system("cls");																																																																
-																																break;
-																															}
-																															
-																															else if(selec=='a' || selec=='c' || selec=='d'){
-																																system("color 4f");
-																																cout<<"Uuuh, fallaste. Has perdido!. Te llevas $"<<premio+3100<<endl; //se muestra cuando el usuario pierde
-																																//si el usuario pierde en la ultima pregunta se guarda en el mismo archivo antes creado
-																																//la informacion de que ha perdido 
-																																time_t   t,x;
-																																char *fecha;																																			
-																																x = time (&t);																																
-																																fecha = ctime (&x);  
-																																
-																																ofstream millon("QUIEN QUIERE SER MILLONARIO.txt",ios_base::app);																																
-																																if (millon.is_open()){	
-																																	millon<<"Jugador: "<<name<<"				Fecha: "<<fecha<<endl;
-																																	millon<<"La ultima vez perdiste en la pregunta "<<Q<<" y te llevaste "<<premio+3100<<endl;
-																																	for(int i=0;i<120;i++){ //crea una linea en el archivo entre cada jugador
-																																		millon<<"_";
-																																	}
-																																	millon<<endl;
-																																	millon.close(); //se cierra el archivo creado																													
-																																}																																																																
-																																else {																																	
-																																	cout<<"No se puede abrir el archivo o no existe"<<endl;																																	
-																																}
-																																
-																																system("pause");
-																																k--;
-																																break;
-																															}
-																															else if(selec=='e'){
-																																cout<<"Gracias por participar! Tu premio $"<<premio+4900<<endl;
-																																//se crea un archivo cuando el usuario se retira en una pregunta que no sabia contestar
-																																//y se guarda la informacion de en que pregunta se retiro y cuanto se llevo de premio
-																																time_t   t,x;																
-																																char *fecha;																													
-																																x = time (&t);																										
-																																fecha = ctime (&x);  
-																																																										
-																																ofstream millon("QUIEN QUIERE SER MILLONARIO.txt",ios_base::app);																									
-																																if (millon.is_open()){																										
-																																	millon<<"Jugador: "<<name<<"				Fecha: "<<fecha<<endl;
-																																	millon<<"Te retiraste en la pregunta 15 con $"<<premio+4900<<endl;																										
-																																	for(int i=0;i<120;i++){ //crea una linea en el archivo entre cada jugador
-																																		millon<<"_";
-																																	}
-																																	millon<<endl;
-																																	millon.close(); //se cierra el archivo creado																								
-																																}																																																		
-																																else {																											
-																																	cout<<"No se puede abrir el archivo o no existe"<<endl;																											
-																																}
-																																
-																																k--;
-																																system("pause");
-																															}																																													
-																											
-																															system("cls");	
-																														}//while pregunta 15
-																														
-																													}
-																													
-																													else if(selec=='a' || selec=='b' || selec=='d'){
-																														system("color 4f");
-																														cout<<"Uuuh, fallaste. Has perdido!. Te llevas $"<<premio+3100<<endl;
-																														//el usuario pierde en la pregunta 14 y se guarda en el archivo mismo creado
-																														time_t   t,x;
-																														char *fecha;																																	
-																														x = time (&t);																														
-																														fecha = ctime (&x);  
-																														
-																														ofstream millon("QUIEN QUIERE SER MILLONARIO.txt",ios_base::app);																														
-																														if (millon.is_open()){																															
-																															millon<<"Jugador: "<<name<<"				Fecha: "<<fecha<<endl;
-																															millon<<"La ultima vez perdiste en la pregunta "<<Q<<" y te llevaste "<<premio+3100<<endl;
-																															for(int i=0;i<120;i++){ //crea una linea en el archivo entre cada jugador
-																																millon<<"_";
-																															}
-																															millon<<endl;
-																															millon.close(); //se cierra el archivo creado																															
-																														}																																																												
-																														else {																															
-																															cout<<"No se puede abrir el archivo o no existe"<<endl;																															
-																														}																														
-																														system("pause");
-																														k--;
-																														break;
-																													}
-																													else if(selec=='e'){
-																														cout<<"Gracias por participar! Tu premio $"<<premio+4400<<endl;
-																														//el usuario se retira en la pregunta 14 y se guarda en el archivo
-																														time_t   t,x;																
-																														char *fecha;																													
-																														x = time (&t);																										
-																														fecha = ctime (&x);  
-																																																								
-																														ofstream millon("QUIEN QUIERE SER MILLONARIO.txt",ios_base::app);																									
-																														if (millon.is_open()){																										
-																															millon<<"Jugador: "<<name<<"				Fecha: "<<fecha<<endl;
-																															millon<<"Te retiraste en la pregunta 14 con $"<<premio+4400<<endl;																										
-																															for(int i=0;i<120;i++){ //crea una linea en el archivo entre cada jugador
-																																millon<<"_";
-																															}
-																															millon<<endl;
-																															millon.close(); //se cierra el archivo creado																									
-																														}																																																		
-																														else {																											
-																															cout<<"No se puede abrir el archivo o no existe"<<endl;																											
-																														}
-																														
-																														k--;
-																														system("pause");
-																													}																																													
-																									
-																													system("cls");	
-																												}//while pregunta 14
-																												
-																											}
-																											
-																											else if(selec=='a' || selec=='c' || selec=='d'){
-																												system("color 4f");
-																												cout<<"Uuuh, fallaste. Has perdido!. Te llevas $"<<premio+3100<<endl;
-																												//el usuario pierde en la pregunta 13 y se guarda en el archivo
-																												time_t   t,x;
-																												char *fecha;																															
-																												x = time (&t);																												
-																												fecha = ctime (&x);  
-																												
-																												ofstream millon("QUIEN QUIERE SER MILLONARIO.txt",ios_base::app);																												
-																												if (millon.is_open()){																													
-																													millon<<"Jugador: "<<name<<"				Fecha: "<<fecha<<endl;
-																													millon<<"La ultima vez perdiste en la pregunta "<<Q<<" y te llevaste "<<premio+3100<<endl;
-																													for(int i=0;i<120;i++){ //crea una linea en el archivo entre cada jugador
-																														millon<<"_";
-																													}
-																													millon<<endl;
-																													millon.close(); //se cierra el archivo creado																											
-																												}																																																								
-																												else {																													
-																													cout<<"No se puede abrir el archivo o no existe"<<endl;																													
-																												}																												
-																												system("pause");
-																												k--;
-																												break;
-																											}
-																											else if(selec=='e'){
-																												cout<<"Gracias por participar! Tu premio $"<<premio+3900<<endl;
-																												//el usuario se retira en la pregunta 13 y se guarda en el archivo
-																												time_t   t,x;																
-																												char *fecha;																													
-																												x = time (&t);																										
-																												fecha = ctime (&x);  
-																																																						
-																												ofstream millon("QUIEN QUIERE SER MILLONARIO.txt",ios_base::app);																									
-																												if (millon.is_open()){																										
-																													millon<<"Jugador: "<<name<<"				Fecha: "<<fecha<<endl;
-																													millon<<"Te retiraste en la pregunta 13 con $"<<premio+3900<<endl;																										
-																													for(int i=0;i<120;i++){ //crea una linea en el archivo entre cada jugador
-																														millon<<"_";
-																													}
-																													millon<<endl;
-																													millon.close(); //se cierra el archivo creado																										
-																												}																																																		
-																												else {																											
-																													cout<<"No se puede abrir el archivo o no existe"<<endl;																											
-																												}
-																												
-																												k--;
-																												system("pause");
-																											}																																													
-																							
-																											system("cls");	
-																										}//while pregunta 13
-																										
-																									}
-																									
-																									else if(selec=='a' || selec=='b' || selec=='c'){
-																										system("color 4f");
-																										cout<<"Uuuh, fallaste. Has perdido!. Te llevas $"<<premio+3100<<endl;
-																										//el usuario pierde en la pregunta 12 y se guarda en el mismo archivo
-																										time_t   t,x;																
-																										char *fecha;																													
-																										x = time (&t);																										
-																										fecha = ctime (&x);  
-																																																				
-																										ofstream millon("QUIEN QUIERE SER MILLONARIO.txt",ios_base::app);																									
-																										if (millon.is_open()){																										
-																											millon<<"Jugador: "<<name<<"				Fecha: "<<fecha<<endl;
-																											millon<<"La ultima vez perdiste en la pregunta "<<Q<<" y te llevaste "<<premio+3100<<endl;																										
-																											for(int i=0;i<120;i++){ //crea una linea en el archivo entre cada jugador
-																												millon<<"_";
-																											}
-																											millon<<endl;
-																											millon.close(); //se cierra el archivo creado																									
-																										}																																																		
-																										else {																											
-																											cout<<"No se puede abrir el archivo o no existe"<<endl;																											
-																										}
-																										
-																										system("pause");
-																										k--;
-																										break;
-																									}
-																									else if(selec=='e'){
-																										cout<<"Gracias por participar! Tu premio $"<<premio+3600<<endl;
-																										//el usuario se retira en la pregunta 12 y se guarda en el archivo
-																										time_t   t,x;
-																										char *fecha;						
-																										x = time (&t);			
-																										fecha = ctime (&x);  
-																										
-																										ofstream millon("QUIEN QUIERE SER MILLONARIO.txt",ios_base::app);			
-																										if (millon.is_open()){				
-																											millon<<"Jugador: "<<name<<"				Fecha: "<<fecha<<endl;
-																											millon<<"Te retiraste en la pregunta 12 con $"<<premio+3600<<endl;				
-																											for(int i=0;i<120;i++){ //crea una linea en el archivo entre cada jugador
-																												millon<<"_";
-																											}
-																											millon<<endl;
-																											millon.close(); //se cierra el archivo creado		
-																										}						
-																										else {				
-																											cout<<"No se puede abrir el archivo o no existe"<<endl;				
-																										}		
-																										
-																										k--;
-																										system("pause");
-																									}																																													
-																					
-																									system("cls");	
-																								}//while pregunta 12
-																								
-																							}
-																							
-																							else if(selec=='b' || selec=='c' || selec=='d'){
-																								system("color 4f");
-																								cout<<"Uuuh, fallaste. Has perdido!. Te llevas $"<<premio+3100<<endl;
-																								//el usuario pierde en la pregunta 11 y se guarda en el archivo mismo
-																									time_t   t,x;
-																									char *fecha;																												
-																									x = time (&t);																									
-																									fecha = ctime (&x);  
-																									
-																									ofstream millon("QUIEN QUIERE SER MILLONARIO.txt",ios_base::app);																									
-																									if (millon.is_open()){																									
-																										millon<<"Jugador: "<<name<<"				Fecha: "<<fecha<<endl;
-																										millon<<"La ultima vez perdiste en la pregunta "<<Q<<" y te llevaste "<<premio+3100<<endl;
-																										for(int i=0;i<120;i++){ //crea una linea en el archivo entre cada jugador
-																											millon<<"_";
-																										}
-																										millon<<endl;
-																										millon.close(); //se cierra el archivo creado																								
-																									}																																																		
-																									else {																										
-																										cout<<"No se puede abrir el archivo o no existe"<<endl;																										
-																									}
-																								
-																								system("pause");
-																								k--;
-																								break;
-																							}																																													
-																			
-																							system("cls");	
-																						}//while pregunta 11
-																						
-																					}
-																					
-																					else if(selec=='b' || selec=='c' || selec=='d'){
-																						system("color 4f");
-																						cout<<"Uuuh, fallaste. Has perdido!. Te llevas $"<<premio+900<<endl;
-																						//el usuario pierde en la pregunta 10 y se guarda en el archivo
-																						time_t   t,x;																			
-																						char *fecha;																									
-																						x = time (&t);																						
-																						fecha = ctime (&x);  
-																						
-																						ofstream millon("QUIEN QUIERE SER MILLONARIO.txt",ios_base::app);																						
-																						if (millon.is_open()){																							
-																							millon<<"Jugador: "<<name<<"				Fecha: "<<fecha<<endl;
-																							millon<<"La ultima vez perdiste en la pregunta "<<Q<<" y te llevaste "<<premio+900<<endl;
-																							for(int i=0;i<120;i++){ //crea una linea en el archivo entre cada jugador
-																								millon<<"_";
-																							}
-																							millon<<endl;
-																							millon.close(); //se cierra el archivo creado																					
-																						}																																												
-																						else {																							
-																							cout<<"No se puede abrir el archivo o no existe"<<endl;																							
-																						}
-																						
-																						system("pause");
-																						k--;
-																						break;
-																					}
-																					else if(selec=='e'){
-																						cout<<"Gracias por participar! Tu premio $"<<premio+2400<<endl;
-																						//el usuario se retira en la pregunta 10 y se guarda en el archivo
-																						time_t   t,x;
-																						char *fecha;						
-																						x = time (&t);			
-																						fecha = ctime (&x);  
-																						
-																						ofstream millon("QUIEN QUIERE SER MILLONARIO.txt",ios_base::app);			
-																						if (millon.is_open()){				
-																							millon<<"Jugador: "<<name<<"				Fecha: "<<fecha<<endl;
-																							millon<<"Te retiraste en la pregunta 10 con $"<<premio+2400<<endl;				
-																							for(int i=0;i<120;i++){ //crea una linea en el archivo entre cada jugador
-																								millon<<"_";
-																							}
-																							millon<<endl;
-																							millon.close(); //se cierra el archivo creado		
-																						}						
-																						else {				
-																							cout<<"No se puede abrir el archivo o no existe"<<endl;				
-																						}	
-																						
-																						k--;
-																						system("pause");
-																					}
-																						
-																	
-																					system("cls");	
-																				}//while pregunta 10
-																				
-																			}
-																			
-																			else if(selec=='a' || selec=='b' || selec=='c'){
-																				system("color 4f");
-																				cout<<"Uuuh, fallaste. Has perdido!. Te llevas $"<<premio+900<<endl;
-																				//el usuario pierde en la pregunta 9 y se guarda en el archivo
-																				time_t   t,x;
-																				char *fecha;																							
-																				x = time (&t);																				
-																				fecha = ctime (&x);  
-																				
-																				ofstream millon("QUIEN QUIERE SER MILLONARIO.txt",ios_base::app);																				
-																				if (millon.is_open()){																					
-																					millon<<"Jugador: "<<name<<"				Fecha: "<<fecha<<endl;
-																					millon<<"La ultima vez perdiste en la pregunta "<<Q<<" y te llevaste "<<premio+900<<endl;
-																					for(int i=0;i<120;i++){ //crea una linea en el archivo entre cada jugador
-																						millon<<"_";
-																					}
-																					millon<<endl;
-																					millon.close(); //se cierra el archivo creado																				
-																				}																																								
-																				else {																					
-																					cout<<"No se puede abrir el archivo o no existe"<<endl;																					
-																				}
-																				
-																				system("pause");
-																				k--;
-																				break;
-																			}
-																			else if(selec=='e'){
-																				cout<<"Gracias por participar! Tu premio $"<<premio+1900<<endl;
-																				//el usuario se retira en la pregunta 9 y se guarda en el archivo
-																				time_t   t,x;
-																				char *fecha;						
-																				x = time (&t);			
-																				fecha = ctime (&x);  
-																				
-																				ofstream millon("QUIEN QUIERE SER MILLONARIO.txt",ios_base::app);			
-																				if (millon.is_open()){				
-																					millon<<"Jugador: "<<name<<"				Fecha: "<<fecha<<endl;
-																					millon<<"Te retiraste en la pregunta 9 con $"<<premio+1900<<endl;				
-																					for(int i=0;i<120;i++){ //crea una linea en el archivo entre cada jugador
-																						millon<<"_";
-																					}
-																					millon<<endl;
-																					millon.close(); //se cierra el archivo creado			
-																				}						
-																				else {				
-																					cout<<"No se puede abrir el archivo o no existe"<<endl;				
-																				}																					
-																				k--;
-																				system("pause");
-																			}																																			
-																			system("cls");	
-																		}//while pregunta 9
-																		
-																	}
-																	
-																	else if(selec=='a' || selec=='b' || selec=='c'){
-																		system("color 4f");
-																		cout<<"Uuuh, fallaste. Has perdido!. Te llevas $"<<premio+900<<endl;
-																		//el usuario pierde en la pregunta 8 y se guarda en el archivo
-																			time_t   t,x;
-																			char *fecha;																						
-																			x = time (&t);																			
-																			fecha = ctime (&x);  
-																			
-																			ofstream millon("QUIEN QUIERE SER MILLONARIO.txt",ios_base::app);																			
-																			if (millon.is_open()){																				
-																				millon<<"Jugador: "<<name<<"				Fecha: "<<fecha<<endl;
-																				millon<<"La ultima vez perdiste en la pregunta "<<Q<<" y te llevaste "<<premio+900<<endl;
-																				for(int i=0;i<120;i++){ //crea una linea en el archivo entre cada jugador
-																					millon<<"_";
-																				}
-																				millon<<endl;
-																				millon.close(); //se cierra el archivo creado	
-																			}																																						
-																			else {																				
-																				cout<<"No se puede abrir el archivo o no existe"<<endl;																				
-																			}																		
-																		system("pause");
-																		k--;
-																		break;
-																	}
-																	else if(selec=='e'){
-																		cout<<"Gracias por participar! Tu premio $"<<premio+1400<<endl;
-																		//el usuario se retira en la pregunta 8 y se guarda en el archivo
-																		time_t   t,x;
-																		char *fecha;						
-																		x = time (&t);			
-																		fecha = ctime (&x);  
-																		
-																		ofstream millon("QUIEN QUIERE SER MILLONARIO.txt",ios_base::app);			
-																		if (millon.is_open()){				
-																			millon<<"Jugador: "<<name<<"				Fecha: "<<fecha<<endl;
-																			millon<<"Te retiraste en la pregunta 8 con $"<<premio+1400<<endl;				
-																			for(int i=0;i<120;i++){ //crea una linea en el archivo entre cada jugador
-																				millon<<"_";
-																			}
-																			millon<<endl;
-																			millon.close(); //se cierra el archivo creado		
-																		}						
-																		else {				
-																			cout<<"No se puede abrir el archivo o no existe"<<endl;				
-																		}																												
-																		k--;
-																		system("pause");
-																	}																															
-																	system("cls");	
-																}//while pregunta 8
-																
-															}															
-															else if(selec=='a' || selec=='c' || selec=='d'){
-																system("color 4f");
-																cout<<"Uuuh, fallaste. Has perdido!. Te llevas $"<<premio+900<<endl;
-																//el usuario pierde en la pregunta 7 y se guarda en el archivo
-																time_t   t,x;
-																char *fecha;																			
-																x = time (&t);																
-																fecha = ctime (&x);  
-																
-																ofstream millon("QUIEN QUIERE SER MILLONARIO.txt",ios_base::app);																
-																if (millon.is_open()){																	
-																	millon<<"Jugador: "<<name<<"				Fecha: "<<fecha<<endl;
-																	millon<<"La ultima vez perdiste en la pregunta "<<Q<<" y te llevaste "<<premio+900<<endl;
-																	for(int i=0;i<120;i++){ //crea una linea en el archivo entre cada jugador
-																		millon<<"_";
-																	}
-																	millon<<endl;
-																	millon.close(); //se cierra el archivo creado	
-																}																																
-																else {																	
-																	cout<<"No se puede abrir el archivo o no existe"<<endl;																	
-																}				
-																
-																system("pause");
-																k--;
-																break;
-															}
-															else if(selec=='e'){
-																cout<<"Gracias por participar! Tu premio $"<<premio+1200<<endl;
-																//el usuario se retira en la pregunta 7 y se guarda en el archivo mismo
-																time_t   t,x;
-																char *fecha;						
-																x = time (&t);			
-																fecha = ctime (&x);  
-																
-																ofstream millon("QUIEN QUIERE SER MILLONARIO.txt",ios_base::app);			
-																if (millon.is_open()){				
-																	millon<<"Jugador: "<<name<<"				Fecha: "<<fecha<<endl;
-																	millon<<"Te retiraste en la pregunta 7 con $"<<premio+1200<<endl;				
-																	for(int i=0;i<120;i++){ //crea una linea en el archivo entre cada jugador
-																		millon<<"_";
-																	}
-																	millon<<endl;
-																	millon.close(); //se cierra el archivo creado			
-																}						
-																else {				
-																	cout<<"No se puede abrir el archivo o no existe"<<endl;				
-																}																
-																k--;
-																system("pause");
-															}																											
-															system("cls");	
-														}//while pregunta 7
-														
-													}
-													
-													else if(selec=='a' || selec=='b' || selec=='d'){
-														system("color 4f");
-														cout<<"Uuuh, fallaste. Has perdido!. Te llevas $"<<premio+900<<endl;
-														//el usuario pierde en la pregunta 6 y se guarda en el archivo
-															time_t   t,x;
-															char *fecha;																		
-															x = time (&t);															
-															fecha = ctime (&x);  
-															
-															ofstream millon("QUIEN QUIERE SER MILLONARIO.txt",ios_base::app);															
-															if (millon.is_open()){																
-																millon<<"Jugador: "<<name<<endl;
-																millon<<"La ultima vez perdiste en la pregunta "<<Q<<" y te llevaste "<<premio+900<<endl;
-																for(int i=0;i<120;i++){ //crea una linea en el archivo entre cada jugador
-																	millon<<"_";
-																}
-																millon<<endl;
-																millon.close(); //se cierra el archivo creado																
-															}																														
-															else {																
-																cout<<"No se puede abrir el archivo o no existe"<<endl;																
-															}														
-														system("pause");
-														k--;
-														break;
-													}
-														
-													system("cls");	
-												}//while pregunta 6
-												
-											}
-											
-											else if(selec=='a' || selec=='b' || selec=='d'){
-												system("color 4f");
-												cout<<"Uuuh, fallaste. Has perdido!. Te llevas $"<<premio-100<<endl;
-												//el usuario pierde en la pregunta 5 y se guarda en el archivo creado
-												time_t   t,x;
-												char *fecha;																		
-												x = time (&t);															
-												fecha = ctime (&x);  
-																											
-												ofstream millon("QUIEN QUIERE SER MILLONARIO.txt",ios_base::app);															
-												if (millon.is_open()){													
-													millon<<"Jugador: "<<name<<"				Fecha: "<<fecha<<endl;
-													millon<<"La ultima vez perdiste en la pregunta "<<Q<<endl;
-													for(int i=0;i<120;i++){ //crea una linea en el archivo entre cada jugador
-														millon<<"_";
-													}
-													millon<<endl;
-													millon.close(); //se cierra el archivo creado														
-												}																														
-												else {																
-													cout<<"No se puede abrir el archivo o no existe"<<endl;																
-												}												
-												system("pause");
-												k--;
-												break;
-											}
-											else if(selec=='e'){
-												cout<<"Gracias por participar! Tu premio $"<<premio+400<<endl;
-												//el usuario se retira en la preunta 5 y se guarda en el archivo
-												time_t   t,x;
-												char *fecha;						
-												x = time (&t);			
-												fecha = ctime (&x);  
-												
-												ofstream millon("QUIEN QUIERE SER MILLONARIO.txt",ios_base::app);			
-												if (millon.is_open()){				
-													millon<<"Jugador: "<<name<<"				Fecha: "<<fecha<<endl;
-													millon<<"Te retiraste en la pregunta 5 con $"<<premio+400<<endl;				
-													for(int i=0;i<120;i++){ //crea una linea en el archivo entre cada jugador
-														millon<<"_";
-													}
-													millon<<endl;
-													millon.close(); //se cierra el archivo creado				
-												}						
-												else {				
-													cout<<"No se puede abrir el archivo o no existe"<<endl;				
-												}												
-												k--;
-												system("pause");
-											}																			
-											system("cls");	
-										}//while pregunta 5
-										
-									}
-									
-									else if(selec=='b'){
-										system("color 4f");
-										cout<<"Uuuh, fallaste. Has perdido!. Te llevas $"<<premio-100<<endl;
-										//el usuario pierde en la preugnta 4 y se guarda en el archivo
-										time_t   t,x;							
-										char *fecha;													
-										x = time (&t);										
-										fecha = ctime (&x);  
-										
-										ofstream millon("QUIEN QUIERE SER MILLONARIO.txt",ios_base::app);										
-										if (millon.is_open()){											
-											millon<<"Jugador: "<<name<<"				Fecha: "<<fecha<<endl;
-											millon<<"La ultima vez perdiste en la pregunta "<<Q<<endl;
-											for(int i=0;i<120;i++){ //crea una linea en el archivo entre cada jugador
-												millon<<"_";
-											}
-											millon<<endl;
-											millon.close(); //se cierra el archivo creado										
-										}																				
-										else {											
-											cout<<"No se puede abrir el archivo o no existe"<<endl;											
-										}										
-										system("pause");
-										k--;
-										break;
-									}
-									else if(selec=='c'){
-										cout<<"Gracias por participar! Tu premio $"<<premio+200<<endl;
-										//el usuario se retira en la pregunta 4 y se guarda en el archivo
-										time_t   t,x;
-										char *fecha;						
-										x = time (&t);			
-										fecha = ctime (&x);  
-										
-										ofstream millon("QUIEN QUIERE SER MILLONARIO.txt",ios_base::app);			
-										if (millon.is_open()){				
-											millon<<"Jugador: "<<name<<"				Fecha: "<<fecha<<endl;
-											millon<<"Te retiraste en la pregunta 4 con $"<<premio+200<<endl;				
-											for(int i=0;i<120;i++){ //crea una linea en el archivo entre cada jugador
-												millon<<"_";
-											}
-											millon<<endl;
-											millon.close(); //se cierra el archivo creado	
-										}						
-										else {				
-											cout<<"No se puede abrir el archivo o no existe"<<endl;				
-										}										
-										k--;
-										system("pause");
-										break;
-									}														
-									system("cls");	
-								}//while pregunta 4								
-							}
-							
-							else if(selec=='a' || selec=='c' || selec=='d'){
-								system("color 4f");
-								cout<<"Uuuh, fallaste. Has perdido!. Te llevas $"<<premio-100<<endl;
-								//el usuario pierde en la pregunta 3 y se guarda en el archivo
-								time_t   t,x;					
-								char *fecha;											
-								x = time (&t);								
-								fecha = ctime (&x);  
-								
-								ofstream millon("QUIEN QUIERE SER MILLONARIO.txt",ios_base::app);								
-								if (millon.is_open()){									
-									millon<<"Jugador: "<<name<<"				Fecha: "<<fecha<<endl;
-									millon<<"La ultima vez perdiste en la pregunta "<<Q<<endl;
-									for(int i=0;i<120;i++){ //crea una linea en el archivo entre cada jugador
-										millon<<"_";
-									}
-									millon<<endl;
-									millon.close(); //se cierra el archivo creado									
-								}																
-								else {									
-									cout<<"No se puede abrir el archivo o no existe"<<endl;									
-								}								
-								system("pause");
-								k--;
-								break;
-							}
-							else if(selec=='e'){
-								cout<<"Gracias por participar! Tu premio $"<<premio+100<<endl;
-								//el usuario se retira en la pregunta 3 y se guarda en el archivo creado
-								time_t   t,x;
-								char *fecha;						
-								x = time (&t);			
-								fecha = ctime (&x);  
-								
-								ofstream millon("QUIEN QUIERE SER MILLONARIO.txt",ios_base::app);			
-								if (millon.is_open()){				
-									millon<<"Jugador: "<<name<<"				Fecha: "<<fecha<<endl;							
-									millon<<"Te retiraste en la pregunta 3 con $"<<premio+100<<endl;				
-									for(int i=0;i<120;i++){ //crea una linea en el archivo entre cada jugador
-										millon<<"_";
-									}
-									millon<<endl;
-									millon.close(); //se cierra el archivo creado				
-								}						
-								else {				
-									cout<<"No se puede abrir el archivo o no existe"<<endl;				
-								}
-								
-								system("pause");
-								k--;
-								break;
-							}											
-							system("cls");	
-						}//while pregunta 3						
-					}
-					
-					else if(selec=='b' || selec=='c' || selec=='d'){
-						system("color 4f");
-						cout<<"Uuuh, fallaste. Has perdido!. Te llevas $"<<premio-100<<endl;
-					//el usuario pierde en la pregunta 2 y se guarda en el archivo creado	
-					time_t   t,x;		
-					char *fecha;								
-					x = time (&t);					
-					fecha = ctime (&x);  
-					
-					ofstream millon("QUIEN QUIERE SER MILLONARIO.txt",ios_base::app);					
-					if (millon.is_open()){						
-						millon<<"Jugador: "<<name<<"				Fecha: "<<fecha<<endl;
-						millon<<"La ultima vez perdiste en la pregunta "<<Q<<endl;
-						for(int i=0;i<120;i++){ //crea una linea en el archivo entre cada jugador
-							millon<<"_";
-						}
-						millon<<endl;
-						millon.close(); //se cierra el archivo creado				
-					}										
-					else {						
-						cout<<"No se puede abrir el archivo o no existe"<<endl;						
-					}						
-						system("pause");
-						k--;
-						break;
-					}
-					else if(selec=='e'){
-						cout<<"Gracias por participar! tu premio $"<<premio<<endl;
-						//el usuario se retira en la pregunta 2 y se guarda en el archivo
-						time_t   t,x;
-						char *fecha;						
-						x = time (&t);			
-						fecha = ctime (&x);  
-						
-						ofstream millon("QUIEN QUIERE SER MILLONARIO.txt",ios_base::app);			
-							millon<<"Jugador: "<<name<<"				Fecha: "<<fecha<<endl;
-							millon<<"Te retiraste en la pregunta 2 con $"<<premio<<endl;				
-							for(int i=0;i<120;i++){ //crea una linea en el archivo entre cada jugador
-								millon<<"_";
-							}
-							millon<<endl;
-							millon.close(); //se cierra el archivo creado			
-						}						
-						else {				
-							cout<<"No se puede abrir el archivo o no existe"<<endl;				
-						}
-						
-						system("pause");
-						k--;
-						break;
-					}							
-					system("cls");	
-				}//while pregunta 2						
-		else if(selec=='b' || selec=='c' || selec=='d'){
+		else if(selec=="b" || selec=="c" || selec=="d"){
 			system("color 4f");
-			cout<<"Uuuh, fallaste. Has perdido!. Te llevas $"<<premio-100<<endl;
+			cout<<"\nUuuh, fallaste. Has perdido!. Te llevas $"<<premio-100<<endl;
+			system("pause");			
+			system("cls");	
 			//el usuario pierde en la pregunta 1 y se guarda en el archivo
 			time_t   t,x;
 			char *fecha;						
@@ -3608,7 +2685,7 @@ void preguntas(){
 			ofstream millon("QUIEN QUIERE SER MILLONARIO.txt",ios_base::app);			
 			if (millon.is_open()){				
 				millon<<"Jugador: "<<name<<"				Fecha: "<<fecha<<endl;
-				millon<<"La ultima vez perdiste en la pregunta "<<Q<<endl;				
+				millon<<"Perdio en la pregunta "<<Q<<endl;				
 				for(int i=0;i<120;i++){ //crea una linea en el archivo entre cada jugador
 					millon<<"_";
 				}
@@ -3617,45 +2694,1274 @@ void preguntas(){
 			}						
 			else {				
 				cout<<"No se puede abrir el archivo o no existe"<<endl;				
-			}			
-			system("pause");
-			break;
+			}
+			system ("pause");
+			break;	
+			Q--;		
 		}
-		else{			
-			cout<<"Elige una opcion existente"<<endl;			
+		system("color 4f");
+	    cout<<"\n\t\[La opcion "<<selec<<" no existe, por favor vuelve a intentarlo]\n"<<endl;	
+		system ("pause");	
+		system ("cls");
+	}
+}
+	
+void pregunta2 (){
+		
+	string selec;
+	int s=1; //variable s para que este funcionando infinitamente el while
+	while(s==1){ //mientras el usuario no ingrese una opcion existente, el menu se le seguira mostrando
+	
+	   	system("color a0");
+		cout<<"Pregunta "<<Q<<":"<<endl; //pregunta 2
+		cout<<endl;
+		cout<<"A que es igual el seno de un angulo?\n\na) Cateto opuesto sobre Hipotenusa\nb) Cateto adyacente sobre Hipotenusa\nc) Hipotenusa sobre Cateto opuesto\n"
+		"d) Cateto opuesto sobre Cateto adyacente\ne) Me retiro con $"<<premio<<endl;
+		cout<<"Opcion: ";cin>>selec;
+		
+		if(selec=="a"){
+			cout<<"\nCoorectoo!! ya tienes: $"<<premio+100<<endl; //si la acierta ya tiene una cantidad de premio ganada y para de una vez a la siguiente
+			cout<<"Vamos a la siguiente pregunta"<<endl;
+				Q++; //Q aumenta para la pregunta 3
+				system("pause");
+				system("cls");
+				pregunta3();//siguiente pregunta con llamar funcion
 		}
-		system("cls");
-	} //while pregunta 1
+													
+		else if(selec=="b" || selec=="c" || selec=="d"){
+			system("color 4f");
+			cout<<"\nUuuh, fallaste. Has perdido!. Te llevas $"<<premio-100<<endl;
+			system("pause");			
+			system("cls");	
+			//el usuario pierde en la pregunta 1 y se guarda en el archivo
+			time_t   t,x;
+			char *fecha;						
+			x = time (&t);			
+			fecha = ctime (&x);  
+			
+			ofstream millon("QUIEN QUIERE SER MILLONARIO.txt",ios_base::app);			
+			if (millon.is_open()){				
+				millon<<"Jugador: "<<name<<"				Fecha: "<<fecha<<endl;
+				millon<<"Perdio en la pregunta "<<Q<<endl;				
+				for(int i=0;i<120;i++){ //crea una linea en el archivo entre cada jugador
+					millon<<"_";
+				}
+				millon<<endl;
+				millon.close(); //se cierra el archivo creado				
+			}						
+			else {				
+				cout<<"No se puede abrir el archivo o no existe"<<endl;				
+			}
+			k--;
+			Q--;//Retroceder el numero de pregunta a 1 de nuevo
+			system ("pause");
+			system ("cls");
+		    millonario();//Asi se regresa al menu de nuevo, llamando la funcion			
+		}
+			else if(selec=="e"){
+						cout<<"\nGracias por participar! tu premio es: $"<<premio<<endl;
+						//el usuario se retira en la pregunta 2 y se guarda en el archivo
+						time_t   t,x;
+						char *fecha;						
+						x = time (&t);			
+						fecha = ctime (&x);  
+						
+						ofstream millon("QUIEN QUIERE SER MILLONARIO.txt",ios_base::app);	
+							if (millon.is_open()){						
+							millon<<"Jugador: "<<name<<"				Fecha: "<<fecha<<endl;
+							millon<<"Se retiro en la pregunta 2 con $"<<premio<<endl;				
+							for(int i=0;i<120;i++){ //crea una linea en el archivo entre cada jugador
+								millon<<"_";
+							}
+							millon<<endl;
+							millon.close(); //se cierra el archivo creado			
+						}						
+						else {				
+							cout<<"No se puede abrir el archivo o no existe"<<endl;				
+						}
+			    k--;
+			    Q--;//Retroceder el numero de pregunta a 1 de nuevo
+			    system ("pause");
+			    system ("cls");
+		        millonario();//Asi se regresa al menu de nuevo, llamando la funcion	
+					}						
+	
+		system("color 4f");
+	    cout<<"\n\t\[La opcion "<<selec<<" no existe, por favor vuelve a intentarlo]\n"<<endl;	
+		system ("pause");	
+		system ("cls");
+	}
+}
+
+void pregunta3(){
+	
+	string selec;
+	int s=1; //variable s para que este funcionando infinitamente el while
+	while(s==1){ //mientras el usuario no ingrese una opcion existente, el menu se le seguira mostrando
+	
+	   	system("color e0");
+		cout<<"Pregunta "<<Q<<":"<<endl; //pregunta 3
+		cout<<endl;
+		cout<<"Simbolo quimico del Nitrogeno:\n\na) Ni\nb) N\nc) Nitro\nd) Ni idea\ne) Me retiro con $"<<premio+100<<endl;
+		cout<<"Opcion: ";cin>>selec;
+		
+		if(selec=="b"){
+			cout<<"\nCoorectoo!! ya tienes: $"<<premio+200<<endl; //si la acierta ya tiene una cantidad de premio ganada y para de una vez a la siguiente
+			cout<<"Vamos a la siguiente pregunta"<<endl;
+				Q++; //Q aumenta para la pregunta 3
+				system("pause");
+				system("cls");
+				pregunta4();//siguiente pregunta con llamar funcion
+		}
+													
+		else if(selec=="a" || selec=="c" || selec=="d"){
+			system("color 4f");
+			cout<<"\nUuuh, fallaste. Has perdido!. Te llevas $"<<premio-100<<endl;
+			system("pause");			
+			system("cls");	
+			//el usuario pierde en la pregunta 1 y se guarda en el archivo
+			time_t   t,x;
+			char *fecha;						
+			x = time (&t);			
+			fecha = ctime (&x);  
+			
+			ofstream millon("QUIEN QUIERE SER MILLONARIO.txt",ios_base::app);			
+			if (millon.is_open()){				
+				millon<<"Jugador: "<<name<<"				Fecha: "<<fecha<<endl;
+				millon<<"Perdio en la pregunta "<<Q<<endl;				
+				for(int i=0;i<120;i++){ //crea una linea en el archivo entre cada jugador
+					millon<<"_";
+				}
+				millon<<endl;
+				millon.close(); //se cierra el archivo creado				
+			}						
+			else {				
+				cout<<"No se puede abrir el archivo o no existe"<<endl;				
+			}
+			k--;
+			Q=Q-2;//Retroceder el numero de pregunta a 1 de nuevo
+			system ("pause");
+			system ("cls");
+		    millonario();//Asi se regresa al menu de nuevo, llamando la funcion			
+		}
+			else if(selec=="e"){
+						cout<<"\nGracias por participar! tu premio es: $"<<premio<<endl;
+						//el usuario se retira en la pregunta 3 y se guarda en el archivo
+						time_t   t,x;
+						char *fecha;						
+						x = time (&t);			
+						fecha = ctime (&x);  
+						
+						ofstream millon("QUIEN QUIERE SER MILLONARIO.txt",ios_base::app);	
+							if (millon.is_open()){						
+							millon<<"Jugador: "<<name<<"				Fecha: "<<fecha<<endl;
+							millon<<"Se retiro en la pregunta 3 con $"<<premio+100<<endl;				
+							for(int i=0;i<120;i++){ //crea una linea en el archivo entre cada jugador
+								millon<<"_";
+							}
+							millon<<endl;
+							millon.close(); //se cierra el archivo creado			
+						}						
+						else {				
+							cout<<"No se puede abrir el archivo o no existe"<<endl;				
+						}
+			    k--;
+			    Q=Q-2;//Retroceder el numero de pregunta a 1 de nuevo
+			    system ("pause");
+			    system ("cls");
+		        millonario();//Asi se regresa al menu de nuevo, llamando la funcion	
+					}						
+		system("color 4f");
+	    cout<<"\n\t\[La opcion "<<selec<<" no existe, por favor vuelve a intentarlo]\n"<<endl;	
+		system ("pause");	
+		system ("cls");
+	}
+	
+}
+
+void pregunta4(){
+	
+	string selec;
+	int s=1; //variable s para que este funcionando infinitamente el while
+	while(s==1){ //mientras el usuario no ingrese una opcion existente, el menu se le seguira mostrando
+	
+	   	system("color b0");
+	    cout<<"Pregunta "<<Q<<":"<<endl; //pregunta 4
+		cout<<endl;
+		cout<<"K es la onceava letra del abecedario. Cierto o Falso?:\n\na) Cierto\nb) Falso\nc) Me retiro con $"<<premio+200<<endl;
+		cout<<"Opcion: ";cin>>selec;
+		
+		if(selec=="a"){
+			cout<<"\nCoorectoo!! ya tienes: $"<<premio+400<<endl; //si la acierta ya tiene una cantidad de premio ganada y para de una vez a la siguiente
+			cout<<"Vamos a la siguiente pregunta"<<endl;
+				Q++; //Q aumenta para la pregunta 5
+				system("pause");
+				system("cls");
+				pregunta5();//siguiente pregunta con llamar funcion
+		}
+													
+		else if(selec=="b"){
+			system("color 4f");
+			cout<<"\nUuuh, fallaste. Has perdido!. Te llevas $"<<premio-100<<endl;
+			system("pause");			
+			system("cls");	
+			//el usuario pierde en la pregunta 1 y se guarda en el archivo
+			time_t   t,x;
+			char *fecha;						
+			x = time (&t);			
+			fecha = ctime (&x);  
+			
+			ofstream millon("QUIEN QUIERE SER MILLONARIO.txt",ios_base::app);			
+			if (millon.is_open()){				
+				millon<<"Jugador: "<<name<<"				Fecha: "<<fecha<<endl;
+				millon<<"Perdio en la pregunta "<<Q<<endl;				
+				for(int i=0;i<120;i++){ //crea una linea en el archivo entre cada jugador
+					millon<<"_";
+				}
+				millon<<endl;
+				millon.close(); //se cierra el archivo creado				
+			}						
+			else {				
+				cout<<"No se puede abrir el archivo o no existe"<<endl;				
+			}
+			k--;
+			Q=Q-3;//Retroceder el numero de pregunta a 1 de nuevo
+			system ("pause");
+			system ("cls");
+		    millonario();//Asi se regresa al menu de nuevo, llamando la funcion			
+		}
+			else if(selec=="c"){
+						cout<<"\nGracias por participar! tu premio es: $"<<premio+200<<endl;
+						//el usuario se retira en la pregunta 4 y se guarda en el archivo
+						time_t   t,x;
+						char *fecha;						
+						x = time (&t);			
+						fecha = ctime (&x);  
+						
+						ofstream millon("QUIEN QUIERE SER MILLONARIO.txt",ios_base::app);	
+							if (millon.is_open()){						
+							millon<<"Jugador: "<<name<<"				Fecha: "<<fecha<<endl;
+							millon<<"Se retiro en la pregunta 4 con $"<<premio+200<<endl;				
+							for(int i=0;i<120;i++){ //crea una linea en el archivo entre cada jugador
+								millon<<"_";
+							}
+							millon<<endl;
+							millon.close(); //se cierra el archivo creado			
+						}						
+						else {				
+							cout<<"No se puede abrir el archivo o no existe"<<endl;				
+						}
+			    k--;
+			    Q=Q-3;//Retroceder el numero de pregunta a 1 de nuevo
+			    system ("pause");
+			    system ("cls");
+		        millonario();//Asi se regresa al menu de nuevo, llamando la funcion	
+					}						
+		system("color 4f");
+	    cout<<"\n\t\"[La opcion "<<selec<<" no existe, por favor vuelve a intentarlo]\n"<<endl;	
+		system ("pause");	
+		system ("cls");
+	}	
+	
+}
+
+void pregunta5(){
+	
+	string selec;
+	int s=1; //variable s para que este funcionando infinitamente el while
+	while(s==1){ //mientras el usuario no ingrese una opcion existente, el menu se le seguira mostrando
+	
+	   	system("color a0");
+		cout<<"Pregunta "<<Q<<":"<<endl; //pregunta 5
+		cout<<endl;
+		cout<<"Como describirias a un hombre que no tiene todos los dedos en una mano?\n\na) Discapacitado\nb) Con capadicades especiales\n"
+		"c) Normal\nd) Sin dedos\ne) Me retiro con $"<<premio+400<<endl;
+		cout<<"Opcion: ";cin>>selec;
+		
+		if(selec=="c"){
+			cout<<"\nCoorectoo!! ya tienes: $"<<premio+900<<endl; //si la acierta ya tiene una cantidad de premio ganada y para de una vez a la siguiente
+			cout<<"Vamos a la siguiente pregunta"<<endl;
+				Q++; //Q aumenta para la pregunta 6
+				system("pause");
+				system("cls");
+				//se le muestra un mensaje de que llego a una zona segura 
+				cout<<"Has llegado a la primer zona segura, has acertado 5 preguntas!\n"
+			    "De aqui en adelnate si pierdes ya tienes asegurado $1000"<<endl;
+				system("pause");
+				system("cls");
+				pregunta6();//siguiente pregunta con llamar funcion
+		}
+													
+		else if(selec=="a" && selec=="b" && selec=="d"){
+			system("color 4f");
+			cout<<"\nUuuh, fallaste. Has perdido!. Te llevas $"<<premio-100<<endl;
+			system("pause");			
+			system("cls");	
+			//el usuario pierde en la pregunta 1 y se guarda en el archivo
+			time_t   t,x;
+			char *fecha;						
+			x = time (&t);			
+			fecha = ctime (&x);  
+			
+			ofstream millon("QUIEN QUIERE SER MILLONARIO.txt",ios_base::app);			
+			if (millon.is_open()){				
+				millon<<"Jugador: "<<name<<"				Fecha: "<<fecha<<endl;
+				millon<<"Perdio en la pregunta "<<Q<<endl;				
+				for(int i=0;i<120;i++){ //crea una linea en el archivo entre cada jugador
+					millon<<"_";
+				}
+				millon<<endl;
+				millon.close(); //se cierra el archivo creado				
+			}						
+			else {				
+				cout<<"No se puede abrir el archivo o no existe"<<endl;				
+			}
+			k--;
+			Q=Q-4;//Retroceder el numero de pregunta a 1 de nuevo
+			system ("pause");
+			system ("cls");
+		    millonario();//Asi se regresa al menu de nuevo, llamando la funcion			
+		}
+			else if(selec=="e"){
+						cout<<"\nGracias por participar! tu premio es: $"<<premio+400<<endl;
+						//el usuario se retira en la pregunta 5 y se guarda en el archivo
+						time_t   t,x;
+						char *fecha;						
+						x = time (&t);			
+						fecha = ctime (&x);  
+						
+						ofstream millon("QUIEN QUIERE SER MILLONARIO.txt",ios_base::app);	
+							if (millon.is_open()){						
+							millon<<"Jugador: "<<name<<"				Fecha: "<<fecha<<endl;
+							millon<<"Se retiro en la pregunta 5 con $"<<premio+400<<endl;				
+							for(int i=0;i<120;i++){ //crea una linea en el archivo entre cada jugador
+								millon<<"_";
+							}
+							millon<<endl;
+							millon.close(); //se cierra el archivo creado			
+						}						
+						else {				
+							cout<<"No se puede abrir el archivo o no existe"<<endl;				
+						}
+			    k--;
+			    Q=Q-4;//Retroceder el numero de pregunta a 1 de nuevo
+			    system ("pause");
+			    system ("cls");
+		        millonario();//Asi se regresa al menu de nuevo, llamando la funcion	
+					}						
+		system("color 4f");
+	    cout<<"\n\t\"[La opcion "<<selec<<" no existe, por favor vuelve a intentarlo]\n"<<endl;	
+		system ("pause");	
+		system ("cls");
+	}	
+	
+}
+
+void pregunta6(){
+	
+	string selec;
+	int s=1; //variable s para que este funcionando infinitamente el while
+	while(s==1){ //mientras el usuario no ingrese una opcion existente, el menu se le seguira mostrando
+	
+	cout<<"Pregunta "<<Q<<":"<<endl; //pregunta 6
+	cout<<endl;
+	   cout<<"En que orden van los colores de cada letra de Google?\n\na) Rojo, Verde, Azul, Amarillo, Rojo, Azul\n"
+	   "b) Verde, Amarillo, Rojo, Verde, Azul, Rojo\nc) Azul, Rojo, Amarillo, Azul, Verde, Rojo\n"
+	   "d) Azul, Rojo, Amarillo, Azul, Rojo, Verde\n"
+	   "e) Retirarse con $"<<premio+900<<endl;
+	    cout<<"Opcion: ";cin>>selec;
+		
+		if(selec=="c"){
+			cout<<"\nCoorectoo!! ya tienes: $"<<premio+1200<<endl; //si la acierta ya tiene una cantidad de premio ganada y para de una vez a la siguiente
+			cout<<"Vamos a la siguiente pregunta"<<endl;
+				Q++; //Q aumenta para la pregunta 7
+				system("pause");
+				system("cls");
+				pregunta7();//siguiente pregunta con llamar funcion
+		}
+													
+		else if(selec=="a" || selec=="b" || selec=="c"){
+			system("color 4f");
+			cout<<"\nUuuh, fallaste. Has perdido!. Te llevas $"<<premio+900<<endl;
+			system("pause");			
+			system("cls");	
+			//el usuario pierde en la pregunta 1 y se guarda en el archivo
+			time_t   t,x;
+			char *fecha;						
+			x = time (&t);			
+			fecha = ctime (&x);  
+			
+			ofstream millon("QUIEN QUIERE SER MILLONARIO.txt",ios_base::app);			
+			if (millon.is_open()){				
+				millon<<"Jugador: "<<name<<"				Fecha: "<<fecha<<endl;
+				millon<<"Perdio en la pregunta "<<Q<<" pero se llevo $"<<premio+900<<endl;				
+				for(int i=0;i<120;i++){ //crea una linea en el archivo entre cada jugador
+					millon<<"_";
+				}
+				millon<<endl;
+				millon.close(); //se cierra el archivo creado				
+			}						
+			else {				
+				cout<<"No se puede abrir el archivo o no existe"<<endl;				
+			}
+			k--;
+			Q=Q-5;//Retroceder el numero de pregunta a 1 de nuevo
+			system ("pause");
+			system ("cls");
+		    millonario();//Asi se regresa al menu de nuevo, llamando la funcion			
+		}
+			else if(selec=="e"){
+						cout<<"Gracias por participar! tu premio es: $"<<premio+900<<endl;
+						//el usuario se retira en la pregunta 3 y se guarda en el archivo
+						time_t   t,x;
+						char *fecha;						
+						x = time (&t);			
+						fecha = ctime (&x);  
+						
+						ofstream millon("QUIEN QUIERE SER MILLONARIO.txt",ios_base::app);	
+							if (millon.is_open()){						
+							millon<<"Jugador: "<<name<<"				Fecha: "<<fecha<<endl;
+							millon<<"Se retiro en la pregunta "<<Q<<" con $"<<premio+900<<endl;				
+							for(int i=0;i<120;i++){ //crea una linea en el archivo entre cada jugador
+								millon<<"_";
+							}
+							millon<<endl;
+							millon.close(); //se cierra el archivo creado			
+						}						
+						else {				
+							cout<<"No se puede abrir el archivo o no existe"<<endl;				
+						}
+			    k--;
+			    Q=Q-5;//Retroceder el numero de pregunta a 1 de nuevo
+			    system ("pause");
+			    system ("cls");
+		        millonario();//Asi se regresa al menu de nuevo, llamando la funcion	
+					}						
+		system("color 4f");
+	    cout<<"\n\t\"[La opcion "<<selec<<" no existe, por favor vuelve a intentarlo]\n"<<endl;	
+		system ("pause");	
+		system ("cls");
+	}
+	
+}
+
+
+void pregunta7(){
+	
+	string selec;
+	int s=1; //variable s para que este funcionando infinitamente el while
+	while(s==1){ //mientras el usuario no ingrese una opcion existente, el menu se le seguira mostrando
+	
+	system("color 60");
+	cout<<"Pregunta "<<Q<<":"<<endl; //pregunta 7
+	cout<<endl;
+	cout<<"Es para referirse a encontrar algo en tercera persona:\n\na) Haya\nb) Halla\nc) Alla\nd) Ahi\n"
+	"e) Me retiro con $"<<premio+1200<<endl;
+	cout<<"Opcion: ";cin>>selec;
+		
+		if(selec=="b"){
+			cout<<"\nCoorectoo!! ya tienes: $"<<premio+1400<<endl; //si la acierta ya tiene una cantidad de premio ganada y para de una vez a la siguiente
+			cout<<"Vamos a la siguiente pregunta"<<endl;
+				Q++; //Q aumenta para la pregunta 
+				system("pause");
+				system("cls");
+				pregunta8();//siguiente pregunta con llamar funcion
+		}
+													
+		else if(selec=="a" || selec=="c" || selec=="d"){
+			system("color 4f");
+			cout<<"\nUuuh, fallaste. Has perdido!. Te llevas $"<<premio+900<<endl;
+			system("pause");			
+			system("cls");	
+			//el usuario pierde en la pregunta 1 y se guarda en el archivo
+			time_t   t,x;
+			char *fecha;						
+			x = time (&t);			
+			fecha = ctime (&x);  
+			
+			ofstream millon("QUIEN QUIERE SER MILLONARIO.txt",ios_base::app);			
+			if (millon.is_open()){				
+				millon<<"Jugador: "<<name<<"				Fecha: "<<fecha<<endl;
+				millon<<"Perdio en la pregunta "<<Q<<" pero se llevo $"<<premio+900<<endl;				
+				for(int i=0;i<120;i++){ //crea una linea en el archivo entre cada jugador
+					millon<<"_";
+				}
+				millon<<endl;
+				millon.close(); //se cierra el archivo creado				
+			}						
+			else {				
+				cout<<"No se puede abrir el archivo o no existe"<<endl;				
+			}
+			k--;
+			Q=Q-6;//Retroceder el numero de pregunta a 1 de nuevo
+			system ("pause");
+			system ("cls");
+		    millonario();//Asi se regresa al menu de nuevo, llamando la funcion			
+		}
+			else if(selec=="e"){
+						cout<<"\nGracias por participar! tu premio es: $"<<premio+1200<<endl;
+						//el usuario se retira en la pregunta 7 y se guarda en el archivo
+						time_t   t,x;
+						char *fecha;						
+						x = time (&t);			
+						fecha = ctime (&x);  
+						
+						ofstream millon("QUIEN QUIERE SER MILLONARIO.txt",ios_base::app);	
+							if (millon.is_open()){						
+							millon<<"Jugador: "<<name<<"				Fecha: "<<fecha<<endl;
+							millon<<"Se retiro en la pregunta "<<Q<<" con $"<<premio+1200<<endl;				
+							for(int i=0;i<120;i++){ //crea una linea en el archivo entre cada jugador
+								millon<<"_";
+							}
+							millon<<endl;
+							millon.close(); //se cierra el archivo creado			
+						}						
+						else {				
+							cout<<"No se puede abrir el archivo o no existe"<<endl;				
+						}
+			    k--;
+			    Q=Q-6;//Retroceder el numero de pregunta a 1 de nuevo
+			    system ("pause");
+			    system ("cls");
+		        millonario();//Asi se regresa al menu de nuevo, llamando la funcion	
+					}						
+		system("color 4f");
+	    cout<<"\n\t\"[La opcion "<<selec<<" no existe, por favor vuelve a intentarlo]\n"<<endl;	
+		system ("pause");	
+		system ("cls");
+	}
 	
 	
 }
 
-//funciones que contiene las ultimas 5 preguntas que por motivos de espacio se pusieron en una funcion
+void pregunta8(){
+	
+	string selec;
+	int s=1; //variable s para que este funcionando infinitamente el while
+	while(s==1){ //mientras el usuario no ingrese una opcion existente, el menu se le seguira mostrando
+	
+	system("color e0");
+	cout<<"Pregunta "<<Q<<":"<<endl; //pregunta 8
+	cout<<endl;
+	cout<<"Es el cuarto planeta del sistema solar:\n\na) Urano\nb) Jupiter\nc) Mercurio\nd) Marte\n"
+	"e) Me retiro con $"<<premio+1400<<endl;
+	cout<<"Opcion: ";cin>>selec;
+		
+		if(selec=="d"){
+			cout<<"\nCoorectoo!! ya tienes: $"<<premio+1900<<endl; //si la acierta ya tiene una cantidad de premio ganada y para de una vez a la siguiente
+			cout<<"Vamos a la siguiente pregunta"<<endl;
+				Q++; //Q aumenta para la pregunta 
+				system("pause");
+				system("cls");
+				pregunta9();//siguiente pregunta con llamar funcion
+		}
+													
+		else if(selec=="a" || selec=="b" || selec=="c"){
+			system("color 4f");
+			cout<<"\nUuuh, fallaste. Has perdido!. Te llevas $"<<premio+900<<endl;
+			system("pause");			
+			system("cls");	
+			//el usuario pierde en la pregunta 1 y se guarda en el archivo
+			time_t   t,x;
+			char *fecha;						
+			x = time (&t);			
+			fecha = ctime (&x);  
+			
+			ofstream millon("QUIEN QUIERE SER MILLONARIO.txt",ios_base::app);			
+			if (millon.is_open()){				
+				millon<<"Jugador: "<<name<<"				Fecha: "<<fecha<<endl;
+				millon<<"Perdio en la pregunta "<<Q<<" pero se llevo $"<<premio+900<<endl;				
+				for(int i=0;i<120;i++){ //crea una linea en el archivo entre cada jugador
+					millon<<"_";
+				}
+				millon<<endl;
+				millon.close(); //se cierra el archivo creado				
+			}						
+			else {				
+				cout<<"No se puede abrir el archivo o no existe"<<endl;				
+			}
+			k--;
+			Q=Q-7;//Retroceder el numero de pregunta a 1 de nuevo
+			system ("pause");
+			system ("cls");
+		    millonario();//Asi se regresa al menu de nuevo, llamando la funcion			
+		}
+			else if(selec=="e"){
+						cout<<"\nGracias por participar! tu premio es: $"<<premio+1400<<endl;
+						//el usuario se retira en la pregunta 7 y se guarda en el archivo
+						time_t   t,x;
+						char *fecha;						
+						x = time (&t);			
+						fecha = ctime (&x);  
+						
+						ofstream millon("QUIEN QUIERE SER MILLONARIO.txt",ios_base::app);	
+							if (millon.is_open()){						
+							millon<<"Jugador: "<<name<<"				Fecha: "<<fecha<<endl;
+							millon<<"Se retiro en la pregunta "<<Q<<" con $"<<premio+1400<<endl;				
+							for(int i=0;i<120;i++){ //crea una linea en el archivo entre cada jugador
+								millon<<"_";
+							}
+							millon<<endl;
+							millon.close(); //se cierra el archivo creado			
+						}						
+						else {				
+							cout<<"No se puede abrir el archivo o no existe"<<endl;				
+						}
+			    k--;
+			    Q=Q-7;//Retroceder el numero de pregunta a 1 de nuevo
+			    system ("pause");
+			    system ("cls");
+		        millonario();//Asi se regresa al menu de nuevo, llamando la funcion	
+					}						
+		system("color 4f");
+	    cout<<"\n\t\"[La opcion "<<selec<<" no existe, por favor vuelve a intentarlo]\n"<<endl;	
+		system ("pause");	
+		system ("cls");
+	}	
+	
+}
+
+
+void pregunta9(){
+	
+	string selec;
+	int s=1; //variable s para que este funcionando infinitamente el while
+	while(s==1){ //mientras el usuario no ingrese una opcion existente, el menu se le seguira mostrando
+	
+	system("color e0");
+	cout<<"Pregunta "<<Q<<":"<<endl; //pregunta 9
+	cout<<endl;
+	cout<<"Todo bien? Todo correcto?, es una frase de:\n\na) HolaSoyGerman\nb) Fernanfloo\nc) El Rubius OMG\n"
+	"d) Auronplay\ne) Me retiro con $"<<premio+1900<<endl;
+    cout<<"Opcion: ";cin>>selec;
+		
+		if(selec=="d"){
+			cout<<"\nCoorectoo!! ya tienes: $"<<premio+2400<<endl; //si la acierta ya tiene una cantidad de premio ganada y para de una vez a la siguiente
+			cout<<"Vamos a la siguiente pregunta"<<endl;
+				Q++; //Q aumenta para la pregunta 
+				system("pause");
+				system("cls");
+				pregunta10();//siguiente pregunta con llamar funcion
+		}
+													
+		else if(selec=="a" || selec=="b" || selec=="c"){
+			system("color 4f");
+			cout<<"\nUuuh, fallaste. Has perdido!. Te llevas $"<<premio+900<<endl;
+			system("pause");			
+			system("cls");	
+			//el usuario pierde en la pregunta 1 y se guarda en el archivo
+			time_t   t,x;
+			char *fecha;						
+			x = time (&t);			
+			fecha = ctime (&x);  
+			
+			ofstream millon("QUIEN QUIERE SER MILLONARIO.txt",ios_base::app);			
+			if (millon.is_open()){				
+				millon<<"Jugador: "<<name<<"				Fecha: "<<fecha<<endl;
+				millon<<"Perdio en la pregunta "<<Q<<" pero se llevo $"<<premio+1900<<endl;				
+				for(int i=0;i<120;i++){ //crea una linea en el archivo entre cada jugador
+					millon<<"_";
+				}
+				millon<<endl;
+				millon.close(); //se cierra el archivo creado				
+			}						
+			else {				
+				cout<<"No se puede abrir el archivo o no existe"<<endl;				
+			}
+			k--;
+			Q=Q-8;//Retroceder el numero de pregunta a 1 de nuevo
+			system ("pause");
+			system ("cls");
+		    millonario();//Asi se regresa al menu de nuevo, llamando la funcion			
+		}
+			else if(selec=="e"){
+						cout<<"\nGracias por participar! tu premio es: $"<<premio+1900<<endl;
+						//el usuario se retira en la pregunta 7 y se guarda en el archivo
+						time_t   t,x;
+						char *fecha;						
+						x = time (&t);			
+						fecha = ctime (&x);  
+						
+						ofstream millon("QUIEN QUIERE SER MILLONARIO.txt",ios_base::app);	
+							if (millon.is_open()){						
+							millon<<"Jugador: "<<name<<"				Fecha: "<<fecha<<endl;
+							millon<<"Se retiro en la pregunta "<<Q<<" con $"<<premio+1400<<endl;				
+							for(int i=0;i<120;i++){ //crea una linea en el archivo entre cada jugador
+								millon<<"_";
+							}
+							millon<<endl;
+							millon.close(); //se cierra el archivo creado			
+						}						
+						else {				
+							cout<<"No se puede abrir el archivo o no existe"<<endl;				
+						}
+			    k--;
+			    Q=Q-8;//Retroceder el numero de pregunta a 1 de nuevo
+			    system ("pause");
+			    system ("cls");
+		        millonario();//Asi se regresa al menu de nuevo, llamando la funcion	
+					}						
+		system("color 4f");
+	    cout<<"\n\t\"[La opcion "<<selec<<" no existe, por favor vuelve a intentarlo]\n"<<endl;	
+		system ("pause");	
+		system ("cls");
+	}	
+	
+}
+
+
+void pregunta10(){
+	
+	string selec;
+	int s=1; //variable s para que este funcionando infinitamente el while
+	while(s==1){ //mientras el usuario no ingrese una opcion existente, el menu se le seguira mostrando
+	
+	system("color 90");
+	cout<<"Pregunta "<<Q<<":"<<endl; //pregunta 10
+	cout<<endl;
+	cout<<"Es una de las 7 maravillas del mundo moderno:\n\na) El Coliseo de Roma, Italia\n"
+	"b) La Estatua de la Libertad, EE.UU\nc) El Salvador del Mundo, El Salvador\n"
+	"d) El Rio Lempa, El Salvador\ne) Me retiro con $"<<premio+2400<<endl;
+	cout<<"Opcion: ";cin>>selec;
+		
+		if(selec=="a"){
+			cout<<"\nCoorectoo!! ya tienes: $"<<premio+3100<<endl; //si la acierta ya tiene una cantidad de premio ganada y para de una vez a la siguiente
+			cout<<"Vamos a la siguiente pregunta"<<endl;
+				Q++; //Q aumenta para la pregunta 
+				system("pause");
+				system("cls");
+				//se le dice al usuario que llego a la segunda zona segura
+				cout<<"Has llegado a la segunda zona segura, has acertado 10 preguntas!\n"
+				"De aqui en adelante si pierdes ya tienes asegurado $3200"<<endl;
+				system("pause");
+				system("cls");
+				pregunta11();//siguiente pregunta con llamar funcion
+		}
+													
+		else if(selec=="b" || selec=="c" || selec=="d"){
+			system("color 4f");
+			cout<<"\nUuuh, fallaste. Has perdido!. Te llevas $"<<premio+900<<endl;
+			system("pause");			
+			system("cls");	
+			//el usuario pierde en la pregunta 1 y se guarda en el archivo
+			time_t   t,x;
+			char *fecha;						
+			x = time (&t);			
+			fecha = ctime (&x);  
+			
+			ofstream millon("QUIEN QUIERE SER MILLONARIO.txt",ios_base::app);			
+			if (millon.is_open()){				
+				millon<<"Jugador: "<<name<<"				Fecha: "<<fecha<<endl;
+				millon<<"Perdio en la pregunta "<<Q<<" pero se llevo $"<<premio+1900<<endl;				
+				for(int i=0;i<120;i++){ //crea una linea en el archivo entre cada jugador
+					millon<<"_";
+				}
+				millon<<endl;
+				millon.close(); //se cierra el archivo creado				
+			}						
+			else {				
+				cout<<"No se puede abrir el archivo o no existe"<<endl;				
+			}
+			k--;
+			Q=Q-9;//Retroceder el numero de pregunta a 1 de nuevo
+			system ("pause");
+			system ("cls");
+		    millonario();//Asi se regresa al menu de nuevo, llamando la funcion			
+		}
+			else if(selec=="e"){
+						cout<<"\nGracias por participar! tu premio es: $"<<premio+2400<<endl;
+						//el usuario se retira en la pregunta 10 y se guarda en el archivo
+						time_t   t,x;
+						char *fecha;						
+						x = time (&t);			
+						fecha = ctime (&x);  
+						
+						ofstream millon("QUIEN QUIERE SER MILLONARIO.txt",ios_base::app);	
+							if (millon.is_open()){						
+							millon<<"Jugador: "<<name<<"				Fecha: "<<fecha<<endl;
+							millon<<"Se retiro en la pregunta "<<Q<<" con $"<<premio+2400<<endl;				
+							for(int i=0;i<120;i++){ //crea una linea en el archivo entre cada jugador
+								millon<<"_";
+							}
+							millon<<endl;
+							millon.close(); //se cierra el archivo creado			
+						}						
+						else {				
+							cout<<"No se puede abrir el archivo o no existe"<<endl;				
+						}
+			    k--;
+			    Q=Q-9;//Retroceder el numero de pregunta a 1 de nuevo
+			    system ("pause");
+			    system ("cls");
+		        millonario();//Asi se regresa al menu de nuevo, llamando la funcion	
+					}						
+		system("color 4f");
+	    cout<<"\n\t\"[La opcion "<<selec<<" no existe, por favor vuelve a intentarlo]\n"<<endl;	
+		system ("pause");	
+		system ("cls");
+	}
+	
+}
+
 
 void pregunta11(){
-	cout<<"Juego donde no se usa una pelota:\n\na) Hockey\nb) Soccer\nc) Ping Pong\nd) Pool"<<endl;
+	string selec;
+	int s=1; //variable s para que este funcionando infinitamente el while
+	while(s==1){ //mientras el usuario no ingrese una opcion existente, el menu se le seguira mostrando
+	
+	system("color 80");
+    cout<<"Pregunta "<<Q<<":"<<endl; //pregunta 11
+	cout<<endl;
+	cout<<"Juego donde no se usa una pelota:\n\na) Hockey\nb) Soccer\nc) Ping Pong\nd) Pool\ne) Retirarse con $"<<premio+3100<<endl;
+	cout<<"Opcion: ";cin>>selec;
+		
+		if(selec=="a"){
+			cout<<"\nCoorectoo!! ya tienes: $"<<premio+3600<<endl; //si la acierta ya tiene una cantidad de premio ganada y para de una vez a la siguiente
+			cout<<"Vamos a la siguiente pregunta"<<endl;
+				Q++; //Q aumenta para la pregunta 
+				system("pause");
+				system("cls");
+				pregunta12();//siguiente pregunta con llamar funcion
+		}
+													
+		else if(selec=="b" || selec=="c" || selec=="d"){
+			system("color 4f");
+			cout<<"\nUuuh, fallaste. Has perdido!. Te llevas $"<<premio+3100<<endl;
+			system("pause");			
+			system("cls");	
+			//el usuario pierde en la pregunta 1 y se guarda en el archivo
+			time_t   t,x;
+			char *fecha;						
+			x = time (&t);			
+			fecha = ctime (&x);  
+			
+			ofstream millon("QUIEN QUIERE SER MILLONARIO.txt",ios_base::app);			
+			if (millon.is_open()){				
+				millon<<"Jugador: "<<name<<"				Fecha: "<<fecha<<endl;
+				millon<<"Perdio en la pregunta "<<Q<<" pero se llevo $"<<premio+3100<<endl;				
+				for(int i=0;i<120;i++){ //crea una linea en el archivo entre cada jugador
+					millon<<"_";
+				}
+				millon<<endl;
+				millon.close(); //se cierra el archivo creado				
+			}						
+			else {				
+				cout<<"No se puede abrir el archivo o no existe"<<endl;				
+			}
+			k--;
+			Q=Q-10;//Retroceder el numero de pregunta a 1 de nuevo
+			system ("pause");
+			system ("cls");
+		    millonario();//Asi se regresa al menu de nuevo, llamando la funcion			
+		}
+			else if(selec=="e"){
+						cout<<"\nGracias por participar! tu premio es: $"<<premio+3100<<endl;
+						//el usuario se retira en la pregunta 10 y se guarda en el archivo
+						time_t   t,x;
+						char *fecha;						
+						x = time (&t);			
+						fecha = ctime (&x);  
+						
+						ofstream millon("QUIEN QUIERE SER MILLONARIO.txt",ios_base::app);	
+							if (millon.is_open()){						
+							millon<<"Jugador: "<<name<<"				Fecha: "<<fecha<<endl;
+							millon<<"Se retiro en la pregunta "<<Q<<" con $"<<premio+3100<<endl;				
+							for(int i=0;i<120;i++){ //crea una linea en el archivo entre cada jugador
+								millon<<"_";
+							}
+							millon<<endl;
+							millon.close(); //se cierra el archivo creado			
+						}						
+						else {				
+							cout<<"No se puede abrir el archivo o no existe"<<endl;				
+						}
+			    k--;
+			    Q=Q-10;//Retroceder el numero de pregunta a 1 de nuevo
+			    system ("pause");
+			    system ("cls");
+		        millonario();//Asi se regresa al menu de nuevo, llamando la funcion	
+					}						
+		system("color 4f");
+	    cout<<"\n\t\"[La opcion "<<selec<<" no existe, por favor vuelve a intentarlo]\n"<<endl;	
+		system ("pause");	
+		system ("cls");
+	}
+	
 }
 
 void pregunta12(){
-	cout<<"Es una de las frases comunes de Argentina:\n\na) Que chivo!\nb) No mames!\nc) Ostia\nd) Que quilombo!\ne) Me retiro con $3700"<<endl;
+	
+	string selec;
+	int s=1; //variable s para que este funcionando infinitamente el while
+	while(s==1){ //mientras el usuario no ingrese una opcion existente, el menu se le seguira mostrando
+	
+	system("color e0");
+	cout<<"Pregunta "<<Q<<":"<<endl; //pregunta 12
+	cout<<endl;
+    cout<<"Es una de las frases comunes de Argentina:\n\na) Que chivo!\nb) No mames!\nc) Ostia\nd) Que quilombo!\ne) Me retiro con $"<<premio+3600<<endl;
+	cout<<"Opcion: ";cin>>selec;
+		
+		if(selec=="d"){
+			cout<<"\nCoorectoo!! ya tienes: $"<<premio+3900<<endl; //si la acierta ya tiene una cantidad de premio ganada y para de una vez a la siguiente
+			cout<<"Vamos a la siguiente pregunta"<<endl;
+				Q++; //Q aumenta para la pregunta 
+				system("pause");
+				system("cls");
+				pregunta13();//siguiente pregunta con llamar funcion
+		}
+													
+		else if(selec=="a" || selec=="b" || selec=="c"){
+			system("color 4f");
+			cout<<"\nUuuh, fallaste. Has perdido!. Te llevas $"<<premio+3100<<endl;
+			system("pause");			
+			system("cls");	
+			//el usuario pierde en la pregunta 1 y se guarda en el archivo
+			time_t   t,x;
+			char *fecha;						
+			x = time (&t);			
+			fecha = ctime (&x);  
+			
+			ofstream millon("QUIEN QUIERE SER MILLONARIO.txt",ios_base::app);			
+			if (millon.is_open()){				
+				millon<<"Jugador: "<<name<<"				Fecha: "<<fecha<<endl;
+				millon<<"Perdio en la pregunta "<<Q<<" pero se llevo $"<<premio+3100<<endl;				
+				for(int i=0;i<120;i++){ //crea una linea en el archivo entre cada jugador
+					millon<<"_";
+				}
+				millon<<endl;
+				millon.close(); //se cierra el archivo creado				
+			}						
+			else {				
+				cout<<"No se puede abrir el archivo o no existe"<<endl;				
+			}
+			k--;
+			Q=Q-11;//Retroceder el numero de pregunta a 1 de nuevo
+			system ("pause");
+			system ("cls");
+		    millonario();//Asi se regresa al menu de nuevo, llamando la funcion			
+		}
+			else if(selec=="e"){
+						cout<<"\nGracias por participar! tu premio es: $"<<premio+3600<<endl;
+						//el usuario se retira en la pregunta 12 y se guarda en el archivo
+						time_t   t,x;
+						char *fecha;						
+						x = time (&t);			
+						fecha = ctime (&x);  
+						
+						ofstream millon("QUIEN QUIERE SER MILLONARIO.txt",ios_base::app);	
+							if (millon.is_open()){						
+							millon<<"Jugador: "<<name<<"				Fecha: "<<fecha<<endl;
+							millon<<"Se retiro en la pregunta "<<Q<<" con $"<<premio+3600<<endl;				
+							for(int i=0;i<120;i++){ //crea una linea en el archivo entre cada jugador
+								millon<<"_";
+							}
+							millon<<endl;
+							millon.close(); //se cierra el archivo creado			
+						}						
+						else {				
+							cout<<"No se puede abrir el archivo o no existe"<<endl;				
+						}
+			    k--;
+			    Q=Q-11;//Retroceder el numero de pregunta a 1 de nuevo
+			    system ("pause");
+			    system ("cls");
+		        millonario();//Asi se regresa al menu de nuevo, llamando la funcion	
+					}						
+		system("color 4f");
+	    cout<<"\n\t\"[La opcion "<<selec<<" no existe, por favor vuelve a intentarlo]\n"<<endl;	
+		system ("pause");	
+		system ("cls");
+	}
+	
 }
 
 void pregunta13(){
-	cout<<"Pijin es una palabra de:\n\na) Guatemala\nb) Honduras\nc) Nicaragua\nd) Colombia\ne) Me retiro con $4000"<<endl;
+	
+	string selec;
+	int s=1; //variable s para que este funcionando infinitamente el while
+	while(s==1){ //mientras el usuario no ingrese una opcion existente, el menu se le seguira mostrando
+	
+	system("color a0");
+	cout<<"Pregunta "<<Q<<":"<<endl; //pregunta 13
+	cout<<endl;
+    cout<<"Pijin es una palabra de:\n\na) Guatemala\nb) Honduras\nc) Nicaragua\nd) Colombia\ne) Me retiro con $"<<premio+3900<<endl; 
+	cout<<"Opcion: ";cin>>selec;
+		
+		if(selec=="b"){
+			cout<<"\nCoorectoo!! ya tienes: $"<<premio+4400<<endl; //si la acierta ya tiene una cantidad de premio ganada y para de una vez a la siguiente
+			cout<<"Vamos a la siguiente pregunta"<<endl;
+				Q++; //Q aumenta para la pregunta 
+				system("pause");
+				system("cls");
+				pregunta14();//siguiente pregunta con llamar funcion
+		}
+													
+		else if(selec=="a" || selec=="c" || selec=="d"){
+			system("color 4f");
+			cout<<"\nUuuh, fallaste. Has perdido!. Te llevas $"<<premio+3100<<endl;
+			system("pause");			
+			system("cls");	
+			//el usuario pierde en la pregunta 1 y se guarda en el archivo
+			time_t   t,x;
+			char *fecha;						
+			x = time (&t);			
+			fecha = ctime (&x);  
+			
+			ofstream millon("QUIEN QUIERE SER MILLONARIO.txt",ios_base::app);			
+			if (millon.is_open()){				
+				millon<<"Jugador: "<<name<<"				Fecha: "<<fecha<<endl;
+				millon<<"Perdio en la pregunta "<<Q<<" pero se llevo $"<<premio+3100<<endl;				
+				for(int i=0;i<120;i++){ //crea una linea en el archivo entre cada jugador
+					millon<<"_";
+				}
+				millon<<endl;
+				millon.close(); //se cierra el archivo creado				
+			}						
+			else {				
+				cout<<"No se puede abrir el archivo o no existe"<<endl;				
+			}
+			k--;
+			Q=Q-12;//Retroceder el numero de pregunta a 1 de nuevo
+			system ("pause");
+			system ("cls");
+		    millonario();//Asi se regresa al menu de nuevo, llamando la funcion			
+		}
+			else if(selec=="e"){
+						cout<<"\nGracias por participar! tu premio es: $"<<premio+3900<<endl;
+						//el usuario se retira en la pregunta 13 y se guarda en el archivo
+						time_t   t,x;
+						char *fecha;						
+						x = time (&t);			
+						fecha = ctime (&x);  
+						
+						ofstream millon("QUIEN QUIERE SER MILLONARIO.txt",ios_base::app);	
+							if (millon.is_open()){						
+							millon<<"Jugador: "<<name<<"				Fecha: "<<fecha<<endl;
+							millon<<"Se retiro en la pregunta "<<Q<<" con $"<<premio+3900<<endl;				
+							for(int i=0;i<120;i++){ //crea una linea en el archivo entre cada jugador
+								millon<<"_";
+							}
+							millon<<endl;
+							millon.close(); //se cierra el archivo creado			
+						}						
+						else {				
+							cout<<"No se puede abrir el archivo o no existe"<<endl;				
+						}
+			    k--;
+			    Q=Q-12;//Retroceder el numero de pregunta a 1 de nuevo
+			    system ("pause");
+			    system ("cls");
+		        millonario();//Asi se regresa al menu de nuevo, llamando la funcion	
+					}						
+		system("color 4f");
+	    cout<<"\n\t\"[La opcion "<<selec<<" no existe, por favor vuelve a intentarlo]\n"<<endl;	
+		system ("pause");	
+		system ("cls");
+	}
+	
 }
 
 void pregunta14(){
-	cout<<"A que reino pertenecen los hongos?\n\na) Reino Protista\nb) Reino Animal\nc) Reino Fungi\nd) Reino Archaea\ne) Me retiro con $4500"<<endl;
+	
+	string selec;
+	int s=1; //variable s para que este funcionando infinitamente el while
+	while(s==1){ //mientras el usuario no ingrese una opcion existente, el menu se le seguira mostrando
+	
+	system("color 90");
+	cout<<"Pregunta "<<Q<<":"<<endl;//pregunta 14
+	cout<<endl;
+	cout<<"A que reino pertenecen los hongos?\n\na) Reino Protista\nb) Reino Animal\nc) Reino Fungi\nd) Reino Archaea\ne) Me retiro con $"<<premio+4400<<endl;
+    cout<<"Opcion: ";cin>>selec;
+		
+		if(selec=="c"){
+			cout<<"\nCoorectoo!! ya tienes: $"<<premio+4900<<endl; //si la acierta ya tiene una cantidad de premio ganada y para de una vez a la siguiente
+			cout<<"Vamos a la siguiente pregunta"<<endl;
+				Q++; //Q aumenta para la pregunta 
+				system("pause");
+				system("cls");
+				pregunta15();//siguiente pregunta con llamar funcion
+		}
+													
+		else if(selec=="a" || selec=="b" || selec=="d"){
+			system("color 4f");
+			cout<<"\nUuuh, fallaste. Has perdido!. Te llevas $"<<premio+3100<<endl;
+			system("pause");			
+			system("cls");	
+			//el usuario pierde en la pregunta 1 y se guarda en el archivo
+			time_t   t,x;
+			char *fecha;						
+			x = time (&t);			
+			fecha = ctime (&x);  
+			
+			ofstream millon("QUIEN QUIERE SER MILLONARIO.txt",ios_base::app);			
+			if (millon.is_open()){				
+				millon<<"Jugador: "<<name<<"				Fecha: "<<fecha<<endl;
+				millon<<"Perdio en la pregunta "<<Q<<" pero se llevo $"<<premio+3100<<endl;				
+				for(int i=0;i<120;i++){ //crea una linea en el archivo entre cada jugador
+					millon<<"_";
+				}
+				millon<<endl;
+				millon.close(); //se cierra el archivo creado				
+			}						
+			else {				
+				cout<<"No se puede abrir el archivo o no existe"<<endl;				
+			}
+			k--;
+			Q=Q-13;//Retroceder el numero de pregunta a 1 de nuevo
+			system ("pause");
+			system ("cls");
+		    millonario();//Asi se regresa al menu de nuevo, llamando la funcion			
+		}
+			else if(selec=="e"){
+						cout<<"\nGracias por participar! tu premio es: $"<<premio+4400<<endl;
+						//el usuario se retira en la pregunta 13 y se guarda en el archivo
+						time_t   t,x;
+						char *fecha;						
+						x = time (&t);			
+						fecha = ctime (&x);  
+						
+						ofstream millon("QUIEN QUIERE SER MILLONARIO.txt",ios_base::app);	
+							if (millon.is_open()){						
+							millon<<"Jugador: "<<name<<"				Fecha: "<<fecha<<endl;
+							millon<<"Se retiro en la pregunta "<<Q<<" con $"<<premio+4400<<endl;				
+							for(int i=0;i<120;i++){ //crea una linea en el archivo entre cada jugador
+								millon<<"_";
+							}
+							millon<<endl;
+							millon.close(); //se cierra el archivo creado			
+						}						
+						else {				
+							cout<<"No se puede abrir el archivo o no existe"<<endl;				
+						}
+			    k--;
+			    Q=Q-13;//Retroceder el numero de pregunta a 1 de nuevo
+			    system ("pause");
+			    system ("cls");
+		        millonario();//Asi se regresa al menu de nuevo, llamando la funcion	
+					}						
+		system("color 4f");
+	    cout<<"\n\t\"[La opcion "<<selec<<" no existe, por favor vuelve a intentarlo]\n"<<endl;	
+		system ("pause");	
+		system ("cls");
+	}
+	
 }
 
 void pregunta15(){
-	cout<<"Es una funcion para las salidas de C:\n\na) print\nb) printf\nc) cout\nd) cin\ne) Me retiro con $5000"<<endl;
-}
-
-void nivelesM(){
-	cout<<"La pregunta 5 y 10 son zonas seguras, si logras contestarlas ya tendras asegurado el\n"
-	"premio que tienen."<<endl;
-	cout<<endl;
-	cout<<"01- $100\n02- $200\n03- $300\n04- $500\n05- $1,000 zona segura\n06- $1,300\n07- $1,500\n08- $2,000\n09- $2,500\n10- $3,200 zona segura\n11- $3,700\n12- $4,000\n"
-	"13- $4,500\n14- $5,000\n15- $10,000 premio mayor\n"<<endl;
+	
+	string selec;
+	int s=1; //variable s para que este funcionando infinitamente el while
+	while(s==1){ //mientras el usuario no ingrese una opcion existente, el menu se le seguira mostrando
+	
+	system("color 90");
+	system("color 30");
+	cout<<"Pregunta "<<Q<<":"<<endl;//pregunta 15
+	cout<<"Es una funcion para las salidas de C:\n\na) print\nb) printf\nc) cout\nd) cin\ne) Me retiro con $"<<premio+4900<<endl;
+    cout<<"Opcion: ";cin>>selec;
+		
+		if(selec=="b"){
+			cout<<"FELICIDADES!! TE LLEVAS EL PREMIO MAYOR: $"<<premio+9900<<endl;
+			//se crea un archivo donde se guarda que ha contestado todas las preguntas y gano el
+			//premio mayor
+				//se crea un archivo donde se guarda que ha contestado todas las preguntas y gano el
+				//premio mayor
+				time_t   t,x;																																
+				char *fecha;																																
+			    x = time (&t);																																
+				fecha = ctime (&x);  
+																																
+			   ofstream millon("QUIEN QUIERE SER MILLONARIO.txt",ios_base::app); //se crea el archivo																															
+				if (millon.is_open()){																																	
+			    millon<<"Jugador: "<<name<<"				Fecha: "<<fecha<<endl;
+			    millon<<"CONTESTASTE TODAS LAS PREGUNTAS Y GANASTE EL PREMIO MAYOR!!! "<<premio+9900<<endl;																																
+				for(int i=0;i<120;i++){ //crea una linea en el archivo entre cada jugador
+				millon<<"_";
+				}
+				millon<<endl;
+				millon.close(); //se cierra el archivo creado																															
+				}																																																														
+				else {																														
+				cout<<"No se puede abrir el archivo o no existe"<<endl;																																	
+				}
+																																
+				for (int i=0;i<10;i++){ //for que cambia el color de fondo de la consola con varios colores
+				system("color e0"); //cuando gana el usuario
+				system("color 30");
+				}	
+				system("pause");
+				system("cls");
+				cout<<"\n\n-----------------------------\n"<<endl;
+				cout<<"\n     GRACIAS POR JUGAR :)       "<<endl;
+				cout<<"\n-----------------------------\n"<<endl;	
+				k--;
+			    Q=Q-14;//Retroceder el numero de pregunta a 1 de nuevo																															
+				system("pause");
+				system("cls");
+				millonario();																																																																
+				
+				}
+													
+		else if(selec=="a" || selec=="c" || selec=="d"){
+			system("color 4f");
+			cout<<"\nUuuh, fallaste. Has perdido!. Te llevas $"<<premio+3100<<endl;
+			system("pause");			
+			system("cls");	
+			//el usuario pierde en la pregunta 1 y se guarda en el archivo
+			time_t   t,x;
+			char *fecha;						
+			x = time (&t);			
+			fecha = ctime (&x);  
+			
+			ofstream millon("QUIEN QUIERE SER MILLONARIO.txt",ios_base::app);			
+			if (millon.is_open()){				
+				millon<<"Jugador: "<<name<<"				Fecha: "<<fecha<<endl;
+				millon<<"Perdio en la pregunta "<<Q<<" pero se llevo $"<<premio+3100<<endl;				
+				for(int i=0;i<120;i++){ //crea una linea en el archivo entre cada jugador
+					millon<<"_";
+				}
+				millon<<endl;
+				millon.close(); //se cierra el archivo creado				
+			}						
+			else {				
+				cout<<"No se puede abrir el archivo o no existe"<<endl;				
+			}
+			k--;
+			Q=Q-14;//Retroceder el numero de pregunta a 1 de nuevo
+			system ("pause");
+			system ("cls");
+		    millonario();//Asi se regresa al menu de nuevo, llamando la funcion			
+		}
+			else if(selec=="e"){
+						cout<<"\nGracias por participar! tu premio es: $"<<premio+4900<<endl;
+						//el usuario se retira en la pregunta 13 y se guarda en el archivo
+						time_t   t,x;
+						char *fecha;						
+						x = time (&t);			
+						fecha = ctime (&x);  
+						
+						ofstream millon("QUIEN QUIERE SER MILLONARIO.txt",ios_base::app);	
+							if (millon.is_open()){						
+							millon<<"Jugador: "<<name<<"				Fecha: "<<fecha<<endl;
+							millon<<"Se retiro en la pregunta "<<Q<<" con $"<<premio+4900<<endl;				
+							for(int i=0;i<120;i++){ //crea una linea en el archivo entre cada jugador
+								millon<<"_";
+							}
+							millon<<endl;
+							millon.close(); //se cierra el archivo creado			
+						}						
+						else {				
+							cout<<"No se puede abrir el archivo o no existe"<<endl;				
+						}
+			    k--;
+			    Q=Q-14;//Retroceder el numero de pregunta a 1 de nuevo
+			    system ("pause");
+			    system ("cls");
+		        millonario();//Asi se regresa al menu de nuevo, llamando la funcion	
+					}						
+		system("color 4f");
+	    cout<<"\n\t\"[La opcion "<<selec<<" no existe, por favor vuelve a intentarlo]\n"<<endl;	
+		system ("pause");	
+		system ("cls");
+	}
+	
 }
